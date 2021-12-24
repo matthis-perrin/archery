@@ -1,0 +1,3 @@
+{
+  "extends": "@matthis/tsconfig-react-native/tsconfig"
+}

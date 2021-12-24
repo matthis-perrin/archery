@@ -1,0 +1,38 @@
+{
+  "name": "archery",
+  "license": "UNLICENSED",
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "lint": "eslint src --ext .ts,.tsx --fix"
+  },
+  "babel": {
+    "presets": [
+      "module:metro-react-native-babel-preset"
+    ],
+    "plugins": []
+  },
+  "prettier": "@matthis/prettier-config",
+  "eslintConfig": {
+    "extends": [
+      "@matthis/eslint-config-react-native"
+    ]
+  },
+  "dependencies": {
+    "react": "17.0.x",
+    "react-native": "0.66.x",
+    "styled-components": "5.1.x"
+  },
+  "devDependencies": {
+    "@babel/core": "7.12.x",
+    "@babel/runtime": "7.12.x",
+    "@matthis/eslint-config-react-native": "latest",
+    "@matthis/prettier-config": "latest",
+    "@matthis/tsconfig-react-native": "latest",
+    "@types/react": "17.0.x",
+    "@types/react-native": "0.66.x",
+    "@types/styled-components": "5.1.x",
+    "metro-react-native-babel-preset": "0.66.x"
+  }
+}
