@@ -4,12 +4,10 @@ import {
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 import React from 'react';
-import {Button, Text, TouchableOpacity} from 'react-native';
 
 import {BackButton} from './back_button';
 import {HomeScreen} from './home_screen';
 import {Session} from './models';
-import {useNav} from './navigation';
 import {SessionScreen} from './session_screen';
 import {SettingsButton} from './settings_button';
 import {SettingsScreen} from './settings_screen';

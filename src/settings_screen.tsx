@@ -1,15 +1,27 @@
-import React from 'react';
+import AsyncStorageLib from '@react-native-async-storage/async-storage';
+import React, {useCallback} from 'react';
+import {DevSettings} from 'react-native';
 import styled from 'styled-components';
 
-import {LightText, Screen} from './fragments';
+import {TextButton} from './button';
+import {Screen} from './fragments';
+import {sleep} from './sleep';
 
 export const SettingsScreen: React.FC = () => {
+  const handleClearData = useCallback(async () => {
+    await sleep(1000);
+    await AsyncStorageLib.clear();
+    DevSettings.reload();
+  }, []);
+
   return (
     <Wrapper>
-      <LightText>Settings here</LightText>
+      <TextButton title="Clear all data and reload" onPress={handleClearData}></TextButton>
     </Wrapper>
   );
 };
 SettingsScreen.displayName = 'SettingsScreen';
 
-const Wrapper = styled(Screen)``;
+const Wrapper = styled(Screen)`
+  padding: 0 32px;
+`;

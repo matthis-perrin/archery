@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import {LightText, Screen} from './fragments';
 import {generateSessionId, Session} from './models';
 import {SessionTile} from './session_tile';
-import {SettingsButton} from './settings_button';
 import {setSession, useAppState, useSessions} from './stores';
 
 export const HomeScreen: React.FC = () => {
