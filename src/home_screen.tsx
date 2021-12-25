@@ -1,12 +1,13 @@
 import React, {useCallback} from 'react';
-import {Button, FlatList, Text, View} from 'react-native';
+import {Button, FlatList} from 'react-native';
 import styled from 'styled-components';
 
+import {LightText, Screen} from './fragments';
 import {generateSessionId, Session} from './models';
 import {SessionTile} from './session_tile';
 import {setSession, useAppState, useSessions} from './stores';
 
-export const SessionList: React.FC = () => {
+export const HomeScreen: React.FC = () => {
   const appState = useAppState();
   const sessions = useSessions();
 
@@ -35,14 +36,11 @@ export const SessionList: React.FC = () => {
     </Wrapper>
   );
 };
-SessionList.displayName = 'SessionList';
+HomeScreen.displayName = 'HomeScreen';
 
-const Wrapper = styled(View)`
-  height: 100%;
-`;
+const Wrapper = styled(Screen)``;
 
-const Title = styled(Text)`
-  color: #c9ada7;
+const Title = styled(LightText)`
   font-size: 32px;
   text-align: center;
 `;

@@ -1,34 +1,42 @@
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useCallback, useRef} from 'react';
-import {Button, Text, View} from 'react-native';
+import {TouchableHighlight, View} from 'react-native';
 import styled from 'styled-components';
 
+import {RouteParams} from './app';
+import {LightText} from './fragments';
 import {Session} from './models';
-import {deleteSession, setSession} from './stores';
 
 interface SessionTileProps {
   session: Session;
 }
 
 export const SessionTile: React.FC<SessionTileProps> = React.memo(({session}) => {
+  const {navigate} = useNavigation<NativeStackNavigationProp<RouteParams, 'Headless'>>();
   const renderCount = useRef(0);
   renderCount.current++;
 
-  const handleUpdate = useCallback(() => {
-    setSession(session.id, {...session, ts: Date.now()});
-  }, [session]);
+  // const handleUpdate = useCallback(() => {
+  //   setSession(session.id, {...session, ts: Date.now()});
+  // }, [session]);
 
-  const handleDelete = useCallback(() => {
-    deleteSession(session.id);
-  }, [session.id]);
+  // const handleDelete = useCallback(() => {
+  //   deleteSession(session.id);
+  // }, [session.id]);
+
+  const handlePress = useCallback(() => {
+    navigate('Session', {session});
+  }, [navigate, session]);
 
   return (
-    <Wrapper>
-      <LightText>{session.id}</LightText>
-      <LightText>{session.ts}</LightText>
-      <LightText>{renderCount.current}</LightText>
-      <Button title="Update" onPress={handleUpdate} />
-      <Button title="Delete" onPress={handleDelete} />
-    </Wrapper>
+    <TouchableHighlight onPress={handlePress}>
+      <Wrapper>
+        <StyledText>{session.id}</StyledText>
+        <StyledText>{session.ts}</StyledText>
+        <StyledText>{renderCount.current}</StyledText>
+      </Wrapper>
+    </TouchableHighlight>
   );
 });
 SessionTile.displayName = 'SessionTile';
@@ -41,7 +49,6 @@ const Wrapper = styled(View)`
   height: 100px;
 `;
 
-const LightText = styled(Text)`
-  color: #c9ada7;
+const StyledText = styled(LightText)`
   font-size: 16px;
 `;

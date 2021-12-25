@@ -1,5 +1,5 @@
 import {AppRegistry} from 'react-native';
 
-import {App} from './src/app';
+import {AppLoader} from './src/app_loader';
 
-AppRegistry.registerComponent('archery', () => App);
+AppRegistry.registerComponent('archery', () => AppLoader);

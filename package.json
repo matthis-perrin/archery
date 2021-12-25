@@ -21,8 +21,12 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.14",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
     "react": "17.0.x",
     "react-native": "0.66.x",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.10.1",
     "styled-components": "5.1.x"
   },
   "devDependencies": {
