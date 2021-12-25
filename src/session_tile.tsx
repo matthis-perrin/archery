@@ -1,19 +1,17 @@
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useCallback, useRef} from 'react';
 import {TouchableHighlight, View} from 'react-native';
 import styled from 'styled-components';
 
-import {RouteParams} from './app';
 import {LightText} from './fragments';
 import {Session} from './models';
+import {useNav} from './navigation';
 
 interface SessionTileProps {
   session: Session;
 }
 
 export const SessionTile: React.FC<SessionTileProps> = React.memo(({session}) => {
-  const {navigate} = useNavigation<NativeStackNavigationProp<RouteParams, 'Headless'>>();
+  const {navigate} = useNav();
   const renderCount = useRef(0);
   renderCount.current++;
 

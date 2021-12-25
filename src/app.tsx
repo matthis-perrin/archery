@@ -4,10 +4,15 @@ import {
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 import React from 'react';
+import {Button, Text, TouchableOpacity} from 'react-native';
 
+import {BackButton} from './back_button';
 import {HomeScreen} from './home_screen';
 import {Session} from './models';
+import {useNav} from './navigation';
 import {SessionScreen} from './session_screen';
+import {SettingsButton} from './settings_button';
+import {SettingsScreen} from './settings_screen';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +22,7 @@ export type RouteParams = {
   Session: {
     session: Session;
   };
+  Settings: undefined;
   Headless: undefined;
 };
 
@@ -31,8 +37,21 @@ export const App: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} options={baseOptions} />
-        <Stack.Screen name="Session" component={SessionScreen} options={baseOptions} />
+        <Stack.Group>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{...baseOptions, headerLeft: SettingsButton}}
+          />
+          <Stack.Screen name="Session" component={SessionScreen} options={baseOptions} />
+        </Stack.Group>
+        <Stack.Group screenOptions={{presentation: 'modal'}}>
+          <Stack.Screen
+            name="Settings"
+            component={SettingsScreen}
+            options={{...baseOptions, headerLeft: () => BackButton('Close')}}
+          />
+        </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>
   );
