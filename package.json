@@ -3,9 +3,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "watchman watch-del-all && react-native run-ios",
     "start": "react-native start",
-    "lint": "eslint src --ext .ts,.tsx --fix"
+    "lint": "eslint src --ext .tsx --fix"
   },
   "babel": {
     "presets": [
@@ -20,6 +20,7 @@
     ]
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.14",
     "react": "17.0.x",
     "react-native": "0.66.x",
     "styled-components": "5.1.x"
