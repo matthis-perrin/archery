@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, FlatList, Text, View} from 'react-native';
 import styled from 'styled-components';
 
 import {generateSessionId, Session} from './models';
@@ -20,27 +20,29 @@ export const SessionList: React.FC = () => {
     setSession(newSessionId, newSession);
   }, []);
 
+  const renderItem = useCallback(({item}: {item: Session}) => <SessionTile session={item} />, []);
+  const keyExtractor = useCallback((item: Session) => item.id, []);
+
   return (
     <Wrapper>
       <Title>{`Page: ${appState.page}`}</Title>
       <Button title="Add" onPress={handleAdd} />
-      <List>
-        {[...sessions.values()].map(session => (
-          <SessionTile key={session.id} session={session} />
-        ))}
-      </List>
+      <FlatList<Session>
+        data={[...sessions.values()]}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+      />
     </Wrapper>
   );
 };
 SessionList.displayName = 'SessionList';
 
-const Wrapper = styled(View)``;
+const Wrapper = styled(View)`
+  height: 100%;
+`;
 
 const Title = styled(Text)`
   color: #c9ada7;
   font-size: 32px;
-`;
-
-const List = styled(View)`
-  display: flex;
+  text-align: center;
 `;

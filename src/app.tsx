@@ -24,15 +24,13 @@ export const App: React.FC = () => {
   return (
     <SafeAreaWrapper>
       <StatusBar barStyle={'dark-content'} />
-      <ScrollView style={{height: '100%'}} contentInsetAdjustmentBehavior="automatic">
-        {loading ? (
-          <MainView>
-            <Title>Loading</Title>
-          </MainView>
-        ) : (
-          <SessionList />
-        )}
-      </ScrollView>
+      {loading ? (
+        <LoadingView>
+          <LoadingText>Loading</LoadingText>
+        </LoadingView>
+      ) : (
+        <SessionList />
+      )}
     </SafeAreaWrapper>
   );
 };
@@ -42,14 +40,14 @@ const SafeAreaWrapper = styled(SafeAreaView)`
   background-color: #22223b;
 `;
 
-const MainView = styled(View)`
+const LoadingView = styled(View)`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 400px;
 `;
 
-const Title = styled(Text)`
+const LoadingText = styled(Text)`
   color: #c9ada7;
   font-size: 32px;
 `;

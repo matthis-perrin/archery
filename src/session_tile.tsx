@@ -38,6 +38,7 @@ const Wrapper = styled(View)`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  height: 100px;
 `;
 
 const LightText = styled(Text)`
