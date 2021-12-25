@@ -5,7 +5,7 @@ import styled from 'styled-components';
 interface TextButtonProps {
   title: string;
   opacity?: number;
-  onPress: () => Promise<void>;
+  onPress: () => Promise<void> | void;
 }
 
 const DEFAULT_OPACITY = 0.5;
@@ -16,7 +16,7 @@ export const TextButton: FC<TextButtonProps> = props => {
 
   const handlePress = useCallback(() => {
     setLoading(true);
-    onPress()
+    Promise.resolve(onPress())
       .catch(console.error)
       .finally(() => setLoading(false));
   }, [onPress]);
