@@ -19,6 +19,7 @@ export const HomeScreen: React.FC = () => {
         data={[...sessions.values()]}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
+        contentContainerStyle={{flexGrow: 1}}
         ListEmptyComponent={NoSession}
       />
     </Wrapper>

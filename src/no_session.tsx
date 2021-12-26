@@ -30,7 +30,9 @@ NoSession.displayName = 'NoSession';
 const Wrapper = styled(View)`
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 0 32px;
+  height: 50%;
 `;
 
 const Title = styled(LightText)`
