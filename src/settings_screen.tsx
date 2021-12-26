@@ -23,5 +23,5 @@ export const SettingsScreen: React.FC = () => {
 SettingsScreen.displayName = 'SettingsScreen';
 
 const Wrapper = styled(Screen)`
-  padding: 0 32px;
+  padding: 32px 32px 0 32px;
 `;

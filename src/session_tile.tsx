@@ -12,8 +12,6 @@ interface SessionTileProps {
 
 export const SessionTile: React.FC<SessionTileProps> = React.memo(({session}) => {
   const {navigate} = useNav();
-  const renderCount = useRef(0);
-  renderCount.current++;
 
   // const handleUpdate = useCallback(() => {
   //   setSession(session.id, {...session, ts: Date.now()});
@@ -30,9 +28,7 @@ export const SessionTile: React.FC<SessionTileProps> = React.memo(({session}) =>
   return (
     <TouchableHighlight onPress={handlePress}>
       <Wrapper>
-        <StyledText>{session.id}</StyledText>
-        <StyledText>{session.ts}</StyledText>
-        <StyledText>{renderCount.current}</StyledText>
+        <StyledText>{new Date(session.ts).toLocaleString()}</StyledText>
       </Wrapper>
     </TouchableHighlight>
   );
@@ -45,6 +41,7 @@ const Wrapper = styled(View)`
   align-items: center;
   justify-content: space-evenly;
   height: 100px;
+  background-color: #ffffff33;
 `;
 
 const StyledText = styled(LightText)`
