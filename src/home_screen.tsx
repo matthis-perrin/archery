@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import {FlatList} from 'react-native';
 import styled from 'styled-components';
 
-import {LightText, Screen} from './fragments';
+import {Screen} from './fragments';
 import {Session} from './models';
 import {NoSession} from './no_session';
 import {SessionTile} from './session_tile';

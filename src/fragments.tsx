@@ -1,12 +1,13 @@
-import {Text} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {Text, View} from 'react-native';
 import styled from 'styled-components';
 
-export const Screen = styled(SafeAreaView)`
+import {MY_PURPLE, MY_YELLOW} from './colors';
+
+export const Screen = styled(View)`
   height: 100%;
-  background-color: #22223b;
+  background-color: ${MY_PURPLE};
 `;
 
 export const LightText = styled(Text)`
-  color: #f9c784;
+  color: ${MY_YELLOW};
 `;

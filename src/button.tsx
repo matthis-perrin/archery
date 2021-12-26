@@ -2,6 +2,8 @@ import React, {FC, useCallback, useState} from 'react';
 import {Text, TouchableWithoutFeedback, View} from 'react-native';
 import styled from 'styled-components';
 
+import {MY_YELLOW} from './colors';
+
 interface TextButtonProps {
   title: string;
   opacity?: number;
@@ -36,7 +38,7 @@ const Content = styled(View)`
   align-items: center;
   padding: 8px 16px;
   border-radius: 4px;
-  background-color: #f9c784;
+  background-color: ${MY_YELLOW};
 `;
 const StyledText = styled(Text)`
   font-size: 16px;

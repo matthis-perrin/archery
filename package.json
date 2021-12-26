@@ -25,6 +25,7 @@
     "@react-navigation/native-stack": "^6.2.5",
     "react": "17.0.x",
     "react-native": "0.66.x",
+    "react-native-navigation-bar-color": "^2.0.1",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.1",
     "react-native-svg": "^12.1.1",

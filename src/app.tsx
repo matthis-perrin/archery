@@ -5,7 +5,9 @@ import {
 } from '@react-navigation/native-stack';
 import React from 'react';
 
+import {AddSessionButton} from './add_session_button';
 import {BackButton} from './back_button';
+import {MY_RED} from './colors';
 import {HomeScreen} from './home_screen';
 import {Session} from './models';
 import {SessionScreen} from './session_screen';
@@ -26,28 +28,38 @@ export type RouteParams = {
 
 const baseOptions: NativeStackNavigationOptions = {
   headerStyle: {
-    backgroundColor: '#ed6a5e',
+    backgroundColor: MY_RED,
   },
   headerTintColor: '#000000',
+  headerTitleAlign: 'center',
 };
 
 export const App: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Group>
+        <Stack.Group screenOptions={{animation: 'slide_from_right'}}>
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={{...baseOptions, headerLeft: SettingsButton}}
+            options={{
+              ...baseOptions,
+              title: 'Accueil',
+              headerLeft: SettingsButton,
+              headerRight: AddSessionButton,
+            }}
           />
-          <Stack.Screen name="Session" component={SessionScreen} options={baseOptions} />
+          <Stack.Screen
+            name="Session"
+            component={SessionScreen}
+            options={{...baseOptions, title: 'Feuille de score'}}
+          />
         </Stack.Group>
-        <Stack.Group screenOptions={{presentation: 'modal'}}>
+        <Stack.Group screenOptions={{animation: 'slide_from_left', presentation: 'modal'}}>
           <Stack.Screen
             name="Settings"
             component={SettingsScreen}
-            options={{...baseOptions, headerLeft: () => BackButton('Close')}}
+            options={{...baseOptions, title: 'Réglages', headerLeft: () => BackButton('Close')}}
           />
         </Stack.Group>
       </Stack.Navigator>
