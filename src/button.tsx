@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useState} from 'react';
+import React, {FC, useCallback, useEffect, useRef, useState} from 'react';
 import {Text, TouchableWithoutFeedback, View} from 'react-native';
 import styled from 'styled-components';
 
@@ -16,11 +16,23 @@ export const TextButton: FC<TextButtonProps> = props => {
   const [loading, setLoading] = useState(false);
   const {title, opacity = DEFAULT_OPACITY, onPress} = props;
 
+  const isMounted = useRef(true);
+  useEffect(
+    () => () => {
+      isMounted.current = false;
+    },
+    []
+  );
+
   const handlePress = useCallback(() => {
     setLoading(true);
     Promise.resolve(onPress())
       .catch(console.error)
-      .finally(() => setLoading(false));
+      .finally(() => {
+        if (isMounted.current) {
+          setLoading(false);
+        }
+      });
   }, [onPress]);
 
   return (
