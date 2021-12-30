@@ -18,6 +18,7 @@ import {TextButton} from './button';
 import {EndCircle} from './end_circle';
 import {LightText, Screen} from './fragments';
 import {removeAt, replaceAt} from './immutable';
+import {NO_SCORE} from './models';
 import {useNav} from './navigation';
 import {ScoreCircle} from './score_circle';
 import {SCORE_FORM_HEIGHT, ScoreForm} from './score_form';
@@ -135,10 +136,13 @@ export const SessionScreen: React.FC = React.memo(() => {
 
       if (arrow < session.endSize - 1) {
         setCurrentArrow({end, arrow: arrow + 1});
-      } else if (end < session.ends.length - 1) {
-        setCurrentArrow({end: end + 1, arrow: 0});
       } else {
-        setCurrentArrow(undefined);
+        const nextEnd = session.ends[end + 1];
+        if (nextEnd !== undefined && nextEnd.scores[0] === NO_SCORE) {
+          setCurrentArrow({end: end + 1, arrow: 0});
+        } else {
+          setCurrentArrow(undefined);
+        }
       }
     },
     [currentArrow, session]

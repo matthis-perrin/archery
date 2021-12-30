@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableHighlight, TouchableOpacity, View} from 'react-native';
 import styled from 'styled-components';
 
 import {SCORE_WHITE} from './colors';
@@ -21,63 +21,39 @@ export const ScoreForm: React.FC<ScoreFormProps> = React.memo(props => {
       ),
     [onSelect]
   );
+
+  function renderButton(value: number): JSX.Element {
+    return (
+      <TouchableHighlight
+        activeOpacity={0.75}
+        underlayColor={'#ffffff33'}
+        onPress={handleScorePressed[String(value)]}
+      >
+        <ScoreButton>
+          <ScoreCircle score={{value}} />
+        </ScoreButton>
+      </TouchableHighlight>
+    );
+  }
+
   return (
     <Wrapper>
+      {/* eslint-disable @typescript-eslint/no-magic-numbers */}
       <Line>
-        <TouchableOpacity onPress={handleScorePressed['10']}>
-          <ScoreButton>
-            <ScoreCircle score={{value: 10}} />
-          </ScoreButton>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleScorePressed['9']}>
-          <ScoreButton>
-            <ScoreCircle score={{value: 9}} />
-          </ScoreButton>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleScorePressed['8']}>
-          <ScoreButton>
-            <ScoreCircle score={{value: 8}} />
-          </ScoreButton>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleScorePressed['7']}>
-          <ScoreButton>
-            <ScoreCircle score={{value: 7}} />
-          </ScoreButton>
-        </TouchableOpacity>
+        {renderButton(10)}
+        {renderButton(9)}
+        {renderButton(8)}
+        {renderButton(7)}
       </Line>
       <Line>
-        <TouchableOpacity onPress={handleScorePressed['6']}>
-          <ScoreButton>
-            <ScoreCircle score={{value: 6}} />
-          </ScoreButton>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleScorePressed['5']}>
-          <ScoreButton>
-            <ScoreCircle score={{value: 5}} />
-          </ScoreButton>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleScorePressed['4']}>
-          <ScoreButton>
-            <ScoreCircle score={{value: 4}} />
-          </ScoreButton>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleScorePressed['3']}>
-          <ScoreButton>
-            <ScoreCircle score={{value: 3}} />
-          </ScoreButton>
-        </TouchableOpacity>
+        {renderButton(6)}
+        {renderButton(5)}
+        {renderButton(4)}
+        {renderButton(3)}
       </Line>
       <Line>
-        <TouchableOpacity onPress={handleScorePressed['2']}>
-          <ScoreButton>
-            <ScoreCircle score={{value: 2}} />
-          </ScoreButton>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleScorePressed['1']}>
-          <ScoreButton>
-            <ScoreCircle score={{value: 1}} />
-          </ScoreButton>
-        </TouchableOpacity>
+        {renderButton(2)}
+        {renderButton(1)}
         <TouchableOpacity onPress={handleScorePressed['0']}>
           <ZeroButton>
             <ZeroTextWrapper>
@@ -86,6 +62,7 @@ export const ScoreForm: React.FC<ScoreFormProps> = React.memo(props => {
           </ZeroButton>
         </TouchableOpacity>
       </Line>
+      {/* eslint-enable @typescript-eslint/no-magic-numbers */}
     </Wrapper>
   );
 });
