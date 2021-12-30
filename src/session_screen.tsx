@@ -1,6 +1,6 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
 import React, {Fragment, useCallback, useEffect, useRef, useState} from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {ScrollView, Text, TouchableWithoutFeedback, View} from 'react-native';
 import styled from 'styled-components';
 
 import {RouteParams} from './app';
@@ -71,7 +71,14 @@ export const SessionScreen: React.FC = React.memo(() => {
   );
 
   const handleSelectScore = useCallback((arrow: SelectedArrow) => {
-    setCurrentArrow(arrow);
+    setCurrentArrow(current => {
+      const alreadySelected = arrow.end === current?.end && arrow.arrow === current.arrow;
+      return alreadySelected ? undefined : arrow;
+    });
+  }, []);
+
+  const handleGlobalPress = useCallback(() => {
+    setCurrentArrow(undefined);
   }, []);
 
   const prev = useRef(currentArrow);
@@ -101,88 +108,90 @@ export const SessionScreen: React.FC = React.memo(() => {
   return (
     <Wrapper>
       <ScrollView ref={scrollViewRef}>
-        <Top>
-          <Header>
-            <HeaderLeft>
-              <Text>30m</Text>
-              <Text>Ø45</Text>
-              <Text>➴➴➴</Text>
-            </HeaderLeft>
-            <HeaderRight>
-              <Text>{`${day} - ${time}`}</Text>
-            </HeaderRight>
-          </Header>
-          <Title>{new Date(session.ts).toLocaleString()}</Title>
-          <Sheet>
-            <Row>
-              <DeleteCell></DeleteCell>
-              <NumberCell>
-                <Text>#</Text>
-              </NumberCell>
-              <EndCell>
-                <Text>Flèches</Text>
-              </EndCell>
-              <ScoreCell>
-                <Text>Volée</Text>
-              </ScoreCell>
-              <TotalCell>
-                <Text>Total</Text>
-              </TotalCell>
-            </Row>
-            {session.ends.map((end, endIndex) => {
-              const endSelected = endIndex === currentArrow?.end;
-              return (
-                // eslint-disable-next-line react/no-array-index-key
-                <Row key={endIndex} style={{zIndex: endSelected ? 1 : undefined}}>
-                  <DeleteCell></DeleteCell>
-                  <NumberCell>
-                    <Text>{endIndex + 1}</Text>
-                  </NumberCell>
-                  <EndCell>
-                    {[...new Array(session.endSize)].map((v, scoreIndex) => {
-                      const arrowSelected = endSelected && scoreIndex === currentArrow.arrow;
-                      return (
-                        <TouchableWithData
-                          // eslint-disable-next-line react/no-array-index-key
-                          key={scoreIndex}
-                          data={{end: endIndex, arrow: scoreIndex}}
-                          onPress={handleSelectScore}
-                        >
-                          <View
-                            style={{
-                              padding: 4,
-                              // borderWidth: 1,
-                              // borderColor: arrowSelected ? '#ff0000' : '#000000',
-                              backgroundColor: arrowSelected ? '#ffffff33' : '#00000000',
-                              marginRight: -1,
-                              marginBottom: -1,
-                              zIndex: arrowSelected ? 1 : undefined,
-                            }}
+        <TouchableWithoutFeedback onPress={handleGlobalPress}>
+          <Top>
+            <Header>
+              <HeaderLeft>
+                <Text>30m</Text>
+                <Text>Ø45</Text>
+                <Text>➴➴➴</Text>
+              </HeaderLeft>
+              <HeaderRight>
+                <Text>{`${day} - ${time}`}</Text>
+              </HeaderRight>
+            </Header>
+            <Title>{new Date(session.ts).toLocaleString()}</Title>
+            <Sheet>
+              <Row>
+                <DeleteCell></DeleteCell>
+                <NumberCell>
+                  <Text>#</Text>
+                </NumberCell>
+                <EndCell>
+                  <Text>Flèches</Text>
+                </EndCell>
+                <ScoreCell>
+                  <Text>Volée</Text>
+                </ScoreCell>
+                <TotalCell>
+                  <Text>Total</Text>
+                </TotalCell>
+              </Row>
+              {session.ends.map((end, endIndex) => {
+                const endSelected = endIndex === currentArrow?.end;
+                return (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <Row key={endIndex} style={{zIndex: endSelected ? 1 : undefined}}>
+                    <DeleteCell></DeleteCell>
+                    <NumberCell>
+                      <Text>{endIndex + 1}</Text>
+                    </NumberCell>
+                    <EndCell>
+                      {[...new Array(session.endSize)].map((v, scoreIndex) => {
+                        const arrowSelected = endSelected && scoreIndex === currentArrow.arrow;
+                        return (
+                          <TouchableWithData
+                            // eslint-disable-next-line react/no-array-index-key
+                            key={scoreIndex}
+                            data={{end: endIndex, arrow: scoreIndex}}
+                            onPress={handleSelectScore}
                           >
-                            <ScoreCircle
-                              score={end.scores[scoreIndex]}
-                              // square
-                              // border
-                              // selected={arrowSelected}
-                              size="small"
-                            />
-                          </View>
-                        </TouchableWithData>
-                      );
-                    })}
-                  </EndCell>
-                  <ScoreCell>
-                    <Text>{endScore(end)}</Text>
-                  </ScoreCell>
-                  <TotalCell>
-                    <Text>{totals[endIndex]}</Text>
-                  </TotalCell>
-                </Row>
-              );
-            })}
-          </Sheet>
-          <TextButton title="Nouvelle volée" onPress={handleAdd} />
-        </Top>
+                            <View
+                              style={{
+                                padding: 4,
+                                // borderWidth: 1,
+                                // borderColor: arrowSelected ? '#ff0000' : '#000000',
+                                backgroundColor: arrowSelected ? '#ffffff33' : '#00000000',
+                                marginRight: -1,
+                                marginBottom: -1,
+                                zIndex: arrowSelected ? 1 : undefined,
+                              }}
+                            >
+                              <ScoreCircle
+                                score={end.scores[scoreIndex]}
+                                // square
+                                // border
+                                // selected={arrowSelected}
+                                size="small"
+                              />
+                            </View>
+                          </TouchableWithData>
+                        );
+                      })}
+                    </EndCell>
+                    <ScoreCell>
+                      <Text>{endScore(end)}</Text>
+                    </ScoreCell>
+                    <TotalCell>
+                      <Text>{totals[endIndex]}</Text>
+                    </TotalCell>
+                  </Row>
+                );
+              })}
+            </Sheet>
+            <TextButton title="Nouvelle volée" onPress={handleAdd} />
+          </Top>
+        </TouchableWithoutFeedback>
       </ScrollView>
       <Bottom>{currentArrow ? <ScoreForm onSelect={handleSelect} /> : <Fragment />}</Bottom>
     </Wrapper>
