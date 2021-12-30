@@ -1,6 +1,7 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
 import React, {Fragment, useCallback, useEffect, useRef, useState} from 'react';
 import {
+  Button,
   HostComponent,
   LayoutAnimation,
   LayoutChangeEvent,
@@ -15,7 +16,7 @@ import {RouteParams} from './app';
 import {TextButton} from './button';
 import {padNumber} from './format';
 import {LightText, Screen} from './fragments';
-import {replaceAt} from './immutable';
+import {removeAt, replaceAt} from './immutable';
 import {ScoreCircle} from './score_circle';
 import {SCORE_FORM_HEIGHT, ScoreForm} from './score_form';
 import {endScore, newEnd} from './session';
@@ -47,6 +48,29 @@ export const SessionScreen: React.FC = React.memo(() => {
     setSession(session.id, {...session, ends: [...session.ends, newEnd(session)]});
     setCurrentArrow({end: session.ends.length, arrow: 0});
   }, [session]);
+
+  // Remove an end from the session
+  const handleRemove = useCallback(
+    (index: number) => {
+      if (session === undefined) {
+        return;
+      }
+      LayoutAnimation.easeInEaseOut();
+      setSession(session.id, {
+        ...session,
+        ends: removeAt(session.ends, index),
+      });
+      if (!currentArrow) {
+        return;
+      }
+      if (currentArrow.end === index) {
+        setCurrentArrow(undefined);
+      } else if (currentArrow.end > index) {
+        setCurrentArrow({...currentArrow, end: currentArrow.end - 1});
+      }
+    },
+    [currentArrow, session]
+  );
 
   // Assign a score to the currently selected arrow
   const handleSelect = useCallback(
@@ -212,7 +236,13 @@ export const SessionScreen: React.FC = React.memo(() => {
                     }}
                     style={{zIndex: endSelected ? 1 : undefined}}
                   >
-                    <DeleteCell></DeleteCell>
+                    <DeleteCell>
+                      <Button
+                        // eslint-disable-next-line react/jsx-no-bind
+                        onPress={() => handleRemove(endIndex)}
+                        title={'x'}
+                      ></Button>
+                    </DeleteCell>
                     <NumberCell>
                       <Text>{endIndex + 1}</Text>
                     </NumberCell>
