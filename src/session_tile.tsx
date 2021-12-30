@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {LightText} from './fragments';
 import {Session} from './models';
 import {useNav} from './navigation';
+import {endCount, sessionScore} from './session';
 
 interface SessionTileProps {
   session: Session;
@@ -21,6 +22,9 @@ export const SessionTile: React.FC<SessionTileProps> = React.memo(({session}) =>
   //   deleteSession(session.id);
   // }, [session.id]);
 
+  const count = endCount(session);
+  const total = sessionScore(session);
+
   const handlePress = useCallback(() => {
     navigate('Session', {sessionId: session.id});
   }, [navigate, session]);
@@ -28,7 +32,13 @@ export const SessionTile: React.FC<SessionTileProps> = React.memo(({session}) =>
   return (
     <TouchableHighlight onPress={handlePress}>
       <Wrapper>
-        <StyledText>{new Date(session.ts).toLocaleString()}</StyledText>
+        <Left>
+          <LightText>{[...new Array(session.endSize)].map(() => '➴').join('')}</LightText>
+          <LightText>{`${count} volées`}</LightText>
+        </Left>
+        <Right>
+          <Total>{total?.value ?? 0}</Total>
+        </Right>
       </Wrapper>
     </TouchableHighlight>
   );
@@ -39,11 +49,18 @@ const Wrapper = styled(View)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
   height: 100px;
+  padding: 0 32px;
   background-color: #ffffff33;
 `;
 
-const StyledText = styled(LightText)`
-  font-size: 16px;
+const Left = styled(View)`
+  flex-grow: 1;
+`;
+const Right = styled(View)`
+  flex-shrink: 0;
+`;
+
+const Total = styled(LightText)`
+  font-size: 32px;
 `;

@@ -1,8 +1,4 @@
-import {End, EndSize, isValueScore, NoScore, Score, Session, SessionId} from './models';
-
-// eslint-disable-next-line no-null/no-null
-export const NO_SCORE: NoScore = null;
-export const INITIAL_SESSION_END_SIZE: EndSize = 6;
+import {End, isValueScore, NO_SCORE, Score, Session, SessionId} from './models';
 
 export function sortSessions(sessions: Map<SessionId, Session>): Session[] {
   return [...sessions.values()].sort((s1, s2) => s2.ts - s1.ts);
@@ -22,8 +18,8 @@ export function sessionScore(session: Session): Score {
     : {value: scores.reduce((sum, score) => sum + score.value, 0)};
 }
 
-export function newEnd(session: Session): End {
-  return {ts: Date.now(), scores: [...new Array(session.endSize)].map(() => NO_SCORE)};
+export function newEnd(endSize: number): End {
+  return {ts: Date.now(), scores: [...new Array(endSize)].map(() => NO_SCORE)};
 }
 
 export function endIsEmpty(end: End): boolean {
@@ -35,9 +31,8 @@ export function sessionIsEmpty(session: Session): boolean {
 }
 
 export function averageByEnd(session: Session): Score {
-  const ends = session.ends.filter(end => !endIsEmpty(end));
-  const total = sessionScore(session);
-  return scoreAverage(total, ends.length);
+  const arrowAvg = averageByArrow(session);
+  return arrowAvg === NO_SCORE ? arrowAvg : {value: arrowAvg.value * session.endSize};
 }
 
 export function scoreAverage(total: Score, count: number): Score {
@@ -90,4 +85,8 @@ export function worstEnd(session: Session): {end: End; index: number} {
     }
   }
   return {end: best, index: bestIndex};
+}
+
+export function endCount(session: Session): number {
+  return session.ends.filter(end => !endIsEmpty(end)).length;
 }

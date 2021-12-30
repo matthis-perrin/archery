@@ -1,7 +1,10 @@
-import {NO_SCORE} from './session';
 import {Brand} from './type_utils';
 
 export type SessionId = Brand<string, 'SessionId'>;
+
+// eslint-disable-next-line no-null/no-null
+export const NO_SCORE: NoScore = null;
+export const INITIAL_SESSION_END_SIZE: EndSize = 6;
 
 export interface ValueScore {
   value: number;

@@ -1,6 +1,7 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
 import React, {Fragment, useCallback, useEffect, useRef, useState} from 'react';
 import {
+  Alert,
   Button,
   HostComponent,
   LayoutAnimation,
@@ -15,15 +16,15 @@ import styled from 'styled-components';
 import {RouteParams} from './app';
 import {TextButton} from './button';
 import {EndCircle} from './end_circle';
-import {padNumber} from './format';
-import {Screen} from './fragments';
+import {LightText, Screen} from './fragments';
 import {removeAt, replaceAt} from './immutable';
+import {useNav} from './navigation';
 import {ScoreCircle} from './score_circle';
 import {SCORE_FORM_HEIGHT, ScoreForm} from './score_form';
-import {endAverage, endScore, newEnd, sessionIsEmpty} from './session';
+import {endAverage, endIsEmpty, endScore, newEnd, sessionIsEmpty} from './session';
 import {SessionSummary} from './session_summary';
 import {Spacing} from './spacing';
-import {setSession, useSession} from './stores';
+import {deleteSession, setSession, useSession} from './stores';
 import {TouchableWithData} from './touchable_with_data';
 
 interface SelectedArrow {
@@ -35,9 +36,14 @@ export const SessionScreen: React.FC = React.memo(() => {
   const {
     params: {sessionId},
   } = useRoute<RouteProp<RouteParams, 'Session'>>();
+  const nav = useNav();
 
   const session = useSession(sessionId);
-  const [currentArrow, setCurrentArrow] = useState<SelectedArrow | undefined>();
+  const lastEndIndex = (session?.ends.length ?? 0) - 1;
+  const lastEnd = session?.ends[lastEndIndex];
+  const [currentArrow, setCurrentArrow] = useState<SelectedArrow | undefined>(
+    lastEnd !== undefined && endIsEmpty(lastEnd) ? {arrow: 0, end: lastEndIndex} : undefined
+  );
   // eslint-disable-next-line no-null/no-null
   const scrollViewRef = useRef<ScrollView>(null);
   const endRowRefs = useRef(new Map<number, View>());
@@ -48,9 +54,38 @@ export const SessionScreen: React.FC = React.memo(() => {
       return;
     }
     LayoutAnimation.easeInEaseOut();
-    setSession(session.id, {...session, ends: [...session.ends, newEnd(session)]});
+    setSession(session.id, {...session, ends: [...session.ends, newEnd(session.endSize)]});
     setCurrentArrow({end: session.ends.length, arrow: 0});
   }, [session]);
+
+  // Delete the session entirely
+  const deleteSessionAndRedirect = useCallback(() => {
+    if (session === undefined) {
+      return;
+    }
+    nav.navigate('Home');
+    deleteSession(session.id);
+  }, [nav, session]);
+  const handleDeleteSession = useCallback(() => {
+    if (session === undefined) {
+      return;
+    }
+    if (session.ends.filter(end => !endIsEmpty(end)).length > 0) {
+      Alert.alert(
+        'Confirmation de suppression',
+        'Êtes vous sûr de vouloir supprimer cette session ?',
+        [
+          {
+            text: 'Annuler',
+            style: 'cancel',
+          },
+          {text: 'Oui, supprimer', onPress: () => deleteSessionAndRedirect()},
+        ]
+      );
+    } else {
+      deleteSessionAndRedirect();
+    }
+  }, [deleteSessionAndRedirect, session]);
 
   // Remove an end from the session
   const handleRemove = useCallback(
@@ -181,12 +216,16 @@ export const SessionScreen: React.FC = React.memo(() => {
   }, [currentArrow]);
 
   if (session === undefined) {
-    return <Wrapper>Session introuvable</Wrapper>;
+    return (
+      <Wrapper>
+        <LightText>Session introuvable</LightText>
+      </Wrapper>
+    );
   }
 
-  const start = new Date(session.ts);
-  const day = start.toLocaleDateString();
-  const time = `${padNumber(start.getHours(), 2)}h${padNumber(start.getMinutes(), 2)}`;
+  // const start = new Date(session.ts);
+  // const day = start.toLocaleDateString();
+  // const time = `${padNumber(start.getHours(), 2)}h${padNumber(start.getMinutes(), 2)}`;
 
   let total = 0;
   const totals: number[] = [];
@@ -297,6 +336,8 @@ export const SessionScreen: React.FC = React.memo(() => {
                 </SummaryTile>
               </React.Fragment>
             )}
+            <Spacing height={32} />
+            <TextButton title="Supprimer session" onPress={handleDeleteSession} />
           </View>
         </TouchableWithoutFeedback>
       </ScrollView>

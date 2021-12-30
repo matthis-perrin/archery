@@ -3,8 +3,7 @@ import {Text, View, ViewProps} from 'react-native';
 import styled from 'styled-components';
 
 import {SCORE_BLACK, SCORE_BLUE, SCORE_GRAY, SCORE_RED, SCORE_WHITE, SCORE_YELLOW} from './colors';
-import {Score} from './models';
-import {NO_SCORE} from './session';
+import {NO_SCORE, Score} from './models';
 
 type ScoreSize = 'small' | 'medium';
 
