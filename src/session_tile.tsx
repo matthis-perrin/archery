@@ -1,4 +1,4 @@
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback} from 'react';
 import {TouchableHighlight, View} from 'react-native';
 import styled from 'styled-components';
 

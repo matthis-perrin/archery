@@ -2,8 +2,18 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import styled from 'styled-components';
 
+import {EndCircle} from './end_circle';
+import {EndLine} from './end_line';
 import {Session} from './models';
-import {averageByEnd, sessionScore} from './session';
+import {ScoreCircle} from './score_circle';
+import {
+  averageByArrow,
+  averageByEnd,
+  bestEnd,
+  scoreAverage,
+  sessionScore,
+  worstEnd,
+} from './session';
 
 export const SCORE_FORM_HEIGHT = 300;
 
@@ -14,12 +24,33 @@ interface SessionSummaryProps {
 export const SessionSummary: React.FC<SessionSummaryProps> = React.memo(props => {
   const {session} = props;
 
+  const endAvg = averageByEnd(session);
+  const arrowAvg = averageByArrow(session);
+  const best = bestEnd(session);
+  const worst = worstEnd(session);
+
   return (
     <Wrapper>
-      <Total>{`${sessionScore(session)} pts`}</Total>
+      <Total>{`${sessionScore(session)?.value ?? 0} pts`}</Total>
       <Line>
         <Label>Moyenne par volée</Label>
-        <Value>{Math.round(10 * averageByEnd(session)) / 10}</Value>
+        <Value>
+          <EndCircle total={endAvg} avg={scoreAverage(endAvg, session.endSize)} precision={1} />
+        </Value>
+      </Line>
+      <Line>
+        <Label>Moyenne par flèche</Label>
+        <Value>
+          <ScoreCircle score={arrowAvg} size="small" precision={1} />
+        </Value>
+      </Line>
+      <Line>
+        <Label>Meilleurs volée</Label>
+        <EndLine end={best.end} endIndex={best.index} />
+      </Line>
+      <Line>
+        <Label>Moins bonne volée</Label>
+        <EndLine end={worst.end} endIndex={worst.index} />
       </Line>
     </Wrapper>
   );

@@ -14,12 +14,13 @@ import styled from 'styled-components';
 
 import {RouteParams} from './app';
 import {TextButton} from './button';
+import {EndCircle} from './end_circle';
 import {padNumber} from './format';
 import {Screen} from './fragments';
 import {removeAt, replaceAt} from './immutable';
 import {ScoreCircle} from './score_circle';
 import {SCORE_FORM_HEIGHT, ScoreForm} from './score_form';
-import {endScore, newEnd, sessionIsEmpty} from './session';
+import {endAverage, endScore, newEnd, sessionIsEmpty} from './session';
 import {SessionSummary} from './session_summary';
 import {Spacing} from './spacing';
 import {setSession, useSession} from './stores';
@@ -190,7 +191,7 @@ export const SessionScreen: React.FC = React.memo(() => {
   let total = 0;
   const totals: number[] = [];
   for (const end of session.ends) {
-    total += endScore(end);
+    total += endScore(end)?.value ?? 0;
     totals.push(total);
   }
 
@@ -199,7 +200,7 @@ export const SessionScreen: React.FC = React.memo(() => {
       <ScrollView style={{flexGrow: 1}} ref={scrollViewRef} onLayout={handleScrollViewLayout}>
         <TouchableWithoutFeedback onPress={handleGlobalPress}>
           <View style={{padding: 24, minHeight: '100%'}}>
-            <Header>
+            {/* <Header>
               <HeaderLeft>
                 <Text>30m</Text>
                 <Text>Ø45</Text>
@@ -208,8 +209,8 @@ export const SessionScreen: React.FC = React.memo(() => {
               <HeaderRight>
                 <Text>{`${day} - ${time}`}</Text>
               </HeaderRight>
-            </Header>
-            <Spacing height={32} />
+            </Header> */}
+            {/* <Spacing height={32} /> */}
             <Sheet>
               <Row>
                 <DeleteCell></DeleteCell>
@@ -275,7 +276,7 @@ export const SessionScreen: React.FC = React.memo(() => {
                       })}
                     </EndCell>
                     <ScoreCell>
-                      <Text>{endScore(end)}</Text>
+                      <EndCircle total={endScore(end)} avg={endAverage(end)} />
                     </ScoreCell>
                     <TotalCell>
                       <Text>{totals[endIndex]}</Text>
@@ -310,26 +311,22 @@ const Wrapper = styled(Screen)`
   flex-direction: column;
   justify-content: space-between;
 `;
-const Top = styled(View)`
-  flex-grow: 1;
-  flex-shrink: 1;
-`;
 const Bottom = styled(View)`
   flex-shrink: 0;
 `;
 
-const Header = styled(View)`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #ffffff77;
-`;
+// const Header = styled(View)`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   background-color: #ffffff77;
+// `;
 
-const HeaderLeft = styled(View)`
-  display: flex;
-  flex-direction: row;
-`;
-const HeaderRight = styled(View)``;
+// const HeaderLeft = styled(View)`
+//   display: flex;
+//   flex-direction: row;
+// `;
+// const HeaderRight = styled(View)``;
 
 const Sheet = styled(View)`
   display: flex;

@@ -1,9 +1,14 @@
+import {NO_SCORE} from './session';
 import {Brand} from './type_utils';
 
 export type SessionId = Brand<string, 'SessionId'>;
 
 export interface ValueScore {
   value: number;
+}
+
+export function isValueScore(s: Score): s is ValueScore {
+  return s !== NO_SCORE;
 }
 
 export type NoScore = null;
