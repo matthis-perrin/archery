@@ -9,7 +9,8 @@ import {AddSessionButton} from './add_session_button';
 import {BackButton} from './back_button';
 import {MY_RED} from './colors';
 import {HomeScreen} from './home_screen';
-import {Session} from './models';
+import {replaceAt} from './immutable';
+import {Session, SessionId} from './models';
 import {SessionScreen} from './session_screen';
 import {SettingsButton} from './settings_button';
 import {SettingsScreen} from './settings_screen';
@@ -20,7 +21,7 @@ const Stack = createNativeStackNavigator();
 export type RouteParams = {
   Home: undefined;
   Session: {
-    session: Session;
+    sessionId: SessionId;
   };
   Settings: undefined;
   Headless: undefined;
@@ -67,3 +68,5 @@ export const App: React.FC = () => {
   );
 };
 App.displayName = 'App';
+
+console.log(replaceAt([0, 1, 2, 3, 4, 5, 6], 2, 10));

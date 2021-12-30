@@ -2,18 +2,24 @@ import {Brand} from './type_utils';
 
 export type SessionId = Brand<string, 'SessionId'>;
 
-export interface Score {
+export interface ValueScore {
   value: number;
 }
 
+export type NoScore = null;
+export type Score = ValueScore | NoScore;
+
 export interface End {
-  scores: Score[];
+  scores: (Score | NoScore)[];
   ts: number;
 }
+
+export type EndSize = 3 | 4 | 5 | 6;
 
 export interface Session {
   id: SessionId;
   ends: End[];
+  endSize: EndSize;
   ts: number;
 }
 

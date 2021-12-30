@@ -1,20 +1,12 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 
-import {generateSessionId, Session} from './models';
-import {setSession} from './stores';
+import {useNewSessionCallback} from './use_new_session_callback';
 
 export const AddSessionButton = (): JSX.Element => {
-  const handleIconPress = useCallback(() => {
-    const newSessionId = generateSessionId();
-    const newSession: Session = {
-      id: newSessionId,
-      ends: [],
-      ts: Date.now(),
-    };
-    setSession(newSessionId, newSession);
-  }, []);
+  const handleIconPress = useNewSessionCallback();
+
   return (
     <TouchableOpacity onPress={handleIconPress}>
       <Svg width={20} height={20} fill={'black'} viewBox="137.2 67.2 425.6 425.6">

@@ -5,15 +5,13 @@ import styled from 'styled-components';
 import {Screen} from './fragments';
 import {Session} from './models';
 import {NoSession} from './no_session';
+import {sortSessions} from './session';
 import {SessionTile} from './session_tile';
 import {useSessions} from './stores';
 
 export const HomeScreen: React.FC = () => {
   const sessions = useSessions();
-  const sortedSession = useMemo(
-    () => [...sessions.values()].sort((s1, s2) => s2.ts - s1.ts),
-    [sessions]
-  );
+  const sortedSession = useMemo(() => sortSessions(sessions), [sessions]);
 
   const renderItem = useCallback(({item}: {item: Session}) => <SessionTile session={item} />, []);
   const keyExtractor = useCallback((item: Session) => item.id, []);

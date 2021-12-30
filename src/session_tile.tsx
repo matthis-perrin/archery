@@ -22,7 +22,7 @@ export const SessionTile: React.FC<SessionTileProps> = React.memo(({session}) =>
   // }, [session.id]);
 
   const handlePress = useCallback(() => {
-    navigate('Session', {session});
+    navigate('Session', {sessionId: session.id});
   }, [navigate, session]);
 
   return (

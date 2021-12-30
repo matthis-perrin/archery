@@ -17,4 +17,5 @@ BackButton.displayName = 'BackButton';
 
 const StyledText = styled(Text)`
   font-size: 16px;
+  font-weight: 600;
 `;

@@ -1,22 +1,16 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {View} from 'react-native';
 import styled from 'styled-components';
 
 import {TextButton} from './button';
 import {LightText} from './fragments';
 import {generateSessionId, Session} from './models';
-import {setSession} from './stores';
+import {INITIAL_SESSION_END_SIZE, sortSessions} from './session';
+import {setSession, useSessions} from './stores';
+import {useNewSessionCallback} from './use_new_session_callback';
 
 export const NoSession: React.FC = () => {
-  const handleNew = useCallback(() => {
-    const newSessionId = generateSessionId();
-    const newSession: Session = {
-      id: newSessionId,
-      ends: [],
-      ts: Date.now(),
-    };
-    setSession(newSessionId, newSession);
-  }, []);
+  const handleNew = useNewSessionCallback();
 
   return (
     <Wrapper>
