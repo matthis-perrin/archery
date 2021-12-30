@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import {SCORE_WHITE} from './colors';
 import {ScoreCircle} from './score_circle';
 
+export const SCORE_FORM_HEIGHT = 300;
+
 interface ScoreFormProps {
   onSelect: (value: number) => void;
 }
@@ -91,6 +93,7 @@ ScoreForm.displayName = 'ScoreForm';
 
 const Wrapper = styled(View)`
   display: flex;
+  height: ${SCORE_FORM_HEIGHT}px;
   background-color: #ffffff88;
 `;
 

@@ -1,6 +1,14 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
 import React, {Fragment, useCallback, useEffect, useRef, useState} from 'react';
-import {ScrollView, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {
+  HostComponent,
+  LayoutAnimation,
+  LayoutChangeEvent,
+  ScrollView,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import styled from 'styled-components';
 
 import {RouteParams} from './app';
@@ -9,7 +17,7 @@ import {padNumber} from './format';
 import {LightText, Screen} from './fragments';
 import {replaceAt} from './immutable';
 import {ScoreCircle} from './score_circle';
-import {ScoreForm} from './score_form';
+import {SCORE_FORM_HEIGHT, ScoreForm} from './score_form';
 import {endScore, newEnd} from './session';
 import {setSession, useSession} from './stores';
 import {TouchableWithData} from './touchable_with_data';
@@ -26,18 +34,21 @@ export const SessionScreen: React.FC = React.memo(() => {
 
   const session = useSession(sessionId);
   const [currentArrow, setCurrentArrow] = useState<SelectedArrow | undefined>();
-  // const [currentEnd, setCurrentEnd] = useState<End | undefined>();
   // eslint-disable-next-line no-null/no-null
   const scrollViewRef = useRef<ScrollView>(null);
+  const endRowRefs = useRef(new Map<number, View>());
 
+  // Add a new end to the session
   const handleAdd = useCallback(() => {
     if (session === undefined) {
       return;
     }
+    LayoutAnimation.easeInEaseOut();
     setSession(session.id, {...session, ends: [...session.ends, newEnd(session)]});
     setCurrentArrow({end: session.ends.length, arrow: 0});
   }, [session]);
 
+  // Assign a score to the currently selected arrow
   const handleSelect = useCallback(
     (score: number) => {
       if (session === undefined || currentArrow === undefined) {
@@ -70,23 +81,74 @@ export const SessionScreen: React.FC = React.memo(() => {
     [currentArrow, session]
   );
 
+  // Update the currently selected arrow
   const handleSelectScore = useCallback((arrow: SelectedArrow) => {
+    LayoutAnimation.easeInEaseOut();
     setCurrentArrow(current => {
       const alreadySelected = arrow.end === current?.end && arrow.arrow === current.arrow;
       return alreadySelected ? undefined : arrow;
     });
   }, []);
 
+  // Dismiss the current selection when pressing anywhere on the screen
   const handleGlobalPress = useCallback(() => {
+    LayoutAnimation.easeInEaseOut();
     setCurrentArrow(undefined);
   }, []);
 
+  // Maintain a ref to the height of the scrollview
+  const scrollViewHeight = useRef(0);
+  const handleScrollViewLayout = useCallback((evt: LayoutChangeEvent) => {
+    scrollViewHeight.current = evt.nativeEvent.layout.height;
+  }, []);
+
+  //
+  // Control the scroll offset when currentArrow is updated
+  //
   const prev = useRef(currentArrow);
   useEffect(() => {
-    if (prev.current === undefined && currentArrow !== undefined && scrollViewRef.current) {
-      // Code to run once the bottom form is opened
-      scrollViewRef.current.scrollToEnd();
+    // Compute the height the scrollview will have after the animation
+    const isOpening = currentArrow !== undefined && prev.current === undefined;
+    const isClosing = currentArrow === undefined && prev.current !== undefined;
+    let scrollViewHeightAfterAnim = scrollViewHeight.current;
+    if (isOpening) {
+      scrollViewHeightAfterAnim -= SCORE_FORM_HEIGHT;
     }
+    if (isClosing) {
+      scrollViewHeightAfterAnim += SCORE_FORM_HEIGHT;
+    }
+
+    // We will try to center the row that is currenly selected (or the
+    // one that was previously selected when closing)
+    const rowToCenter = currentArrow?.end ?? prev.current?.end;
+    if (rowToCenter !== undefined && scrollViewRef.current) {
+      // Get the ref to the view that we want to center
+      const rowView = endRowRefs.current.get(rowToCenter);
+      if (rowView === undefined) {
+        scrollViewRef.current.scrollToEnd();
+      } else {
+        // Measure its position relative to the scrollview
+        rowView.measureLayout(
+          scrollViewRef.current as unknown as HostComponent<unknown>,
+          (x, y, width, height) => {
+            // Ensure the row has been rendered
+            if (width === 0 || height === 0) {
+              scrollViewRef.current?.scrollToEnd();
+              return;
+            }
+            const newOffset = y - (scrollViewHeightAfterAnim - height) / 2;
+            scrollViewRef.current?.scrollTo({
+              x: 0,
+              y: newOffset,
+              animated: true,
+            });
+          },
+          () => {}
+        );
+      }
+    }
+
+    // Update ref to keep track of previous selected arrow
     prev.current = currentArrow;
   }, [currentArrow]);
 
@@ -107,9 +169,9 @@ export const SessionScreen: React.FC = React.memo(() => {
 
   return (
     <Wrapper>
-      <ScrollView ref={scrollViewRef}>
-        <TouchableWithoutFeedback onPress={handleGlobalPress}>
-          <Top>
+      <TouchableWithoutFeedback onPress={handleGlobalPress}>
+        <Top>
+          <ScrollView ref={scrollViewRef} onLayout={handleScrollViewLayout}>
             <Header>
               <HeaderLeft>
                 <Text>30m</Text>
@@ -140,8 +202,16 @@ export const SessionScreen: React.FC = React.memo(() => {
               {session.ends.map((end, endIndex) => {
                 const endSelected = endIndex === currentArrow?.end;
                 return (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <Row key={endIndex} style={{zIndex: endSelected ? 1 : undefined}}>
+                  <Row
+                    key={end.ts}
+                    // eslint-disable-next-line react/jsx-no-bind
+                    ref={ref => {
+                      if (ref) {
+                        endRowRefs.current.set(endIndex, ref);
+                      }
+                    }}
+                    style={{zIndex: endSelected ? 1 : undefined}}
+                  >
                     <DeleteCell></DeleteCell>
                     <NumberCell>
                       <Text>{endIndex + 1}</Text>
@@ -159,21 +229,13 @@ export const SessionScreen: React.FC = React.memo(() => {
                             <View
                               style={{
                                 padding: 4,
-                                // borderWidth: 1,
-                                // borderColor: arrowSelected ? '#ff0000' : '#000000',
                                 backgroundColor: arrowSelected ? '#ffffff33' : '#00000000',
                                 marginRight: -1,
                                 marginBottom: -1,
                                 zIndex: arrowSelected ? 1 : undefined,
                               }}
                             >
-                              <ScoreCircle
-                                score={end.scores[scoreIndex]}
-                                // square
-                                // border
-                                // selected={arrowSelected}
-                                size="small"
-                              />
+                              <ScoreCircle score={end.scores[scoreIndex]} size="small" />
                             </View>
                           </TouchableWithData>
                         );
@@ -190,9 +252,9 @@ export const SessionScreen: React.FC = React.memo(() => {
               })}
             </Sheet>
             <TextButton title="Nouvelle volée" onPress={handleAdd} />
-          </Top>
-        </TouchableWithoutFeedback>
-      </ScrollView>
+          </ScrollView>
+        </Top>
+      </TouchableWithoutFeedback>
       <Bottom>{currentArrow ? <ScoreForm onSelect={handleSelect} /> : <Fragment />}</Bottom>
     </Wrapper>
   );
@@ -206,8 +268,12 @@ const Wrapper = styled(Screen)`
 `;
 const Top = styled(View)`
   padding: 24px;
+  flex-grow: 1;
+  flex-shrink: 1;
 `;
-const Bottom = styled(View)``;
+const Bottom = styled(View)`
+  flex-shrink: 0;
+`;
 
 const Title = styled(LightText)`
   font-size: 24px;
