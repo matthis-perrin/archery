@@ -145,7 +145,6 @@
 				CBFC6A0835AA3A468FA50DE1 /* Pods-archery-archeryTests.debug.xcconfig */,
 				0E1FF4F7527E6989818AD5AA /* Pods-archery-archeryTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -485,6 +484,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GC6A4YF4J6;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = archery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -511,6 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = GC6A4YF4J6;
 				INFOPLIST_FILE = archery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
