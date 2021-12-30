@@ -15,11 +15,13 @@ import styled from 'styled-components';
 import {RouteParams} from './app';
 import {TextButton} from './button';
 import {padNumber} from './format';
-import {LightText, Screen} from './fragments';
+import {Screen} from './fragments';
 import {removeAt, replaceAt} from './immutable';
 import {ScoreCircle} from './score_circle';
 import {SCORE_FORM_HEIGHT, ScoreForm} from './score_form';
-import {endScore, newEnd} from './session';
+import {endScore, newEnd, sessionIsEmpty} from './session';
+import {SessionSummary} from './session_summary';
+import {Spacing} from './spacing';
 import {setSession, useSession} from './stores';
 import {TouchableWithData} from './touchable_with_data';
 
@@ -84,6 +86,7 @@ export const SessionScreen: React.FC = React.memo(() => {
         return;
       }
 
+      LayoutAnimation.easeInEaseOut();
       const newEnd = {
         ...endToUpdate,
         scores: replaceAt(endToUpdate.scores, arrow, {value: score}),
@@ -193,9 +196,9 @@ export const SessionScreen: React.FC = React.memo(() => {
 
   return (
     <Wrapper>
-      <TouchableWithoutFeedback onPress={handleGlobalPress}>
-        <Top>
-          <ScrollView ref={scrollViewRef} onLayout={handleScrollViewLayout}>
+      <ScrollView style={{flexGrow: 1}} ref={scrollViewRef} onLayout={handleScrollViewLayout}>
+        <TouchableWithoutFeedback onPress={handleGlobalPress}>
+          <View style={{padding: 24, minHeight: '100%'}}>
             <Header>
               <HeaderLeft>
                 <Text>30m</Text>
@@ -206,7 +209,7 @@ export const SessionScreen: React.FC = React.memo(() => {
                 <Text>{`${day} - ${time}`}</Text>
               </HeaderRight>
             </Header>
-            <Title>{new Date(session.ts).toLocaleString()}</Title>
+            <Spacing height={32} />
             <Sheet>
               <Row>
                 <DeleteCell></DeleteCell>
@@ -281,10 +284,21 @@ export const SessionScreen: React.FC = React.memo(() => {
                 );
               })}
             </Sheet>
+            <Spacing height={32} />
             <TextButton title="Nouvelle volée" onPress={handleAdd} />
-          </ScrollView>
-        </Top>
-      </TouchableWithoutFeedback>
+            {sessionIsEmpty(session) ? (
+              <React.Fragment />
+            ) : (
+              <React.Fragment>
+                <Spacing height={32} />
+                <SummaryTile>
+                  <SessionSummary session={session} />
+                </SummaryTile>
+              </React.Fragment>
+            )}
+          </View>
+        </TouchableWithoutFeedback>
+      </ScrollView>
       <Bottom>{currentArrow ? <ScoreForm onSelect={handleSelect} /> : <Fragment />}</Bottom>
     </Wrapper>
   );
@@ -297,17 +311,11 @@ const Wrapper = styled(Screen)`
   justify-content: space-between;
 `;
 const Top = styled(View)`
-  padding: 24px;
   flex-grow: 1;
   flex-shrink: 1;
 `;
 const Bottom = styled(View)`
   flex-shrink: 0;
-`;
-
-const Title = styled(LightText)`
-  font-size: 24px;
-  text-align: center;
 `;
 
 const Header = styled(View)`
@@ -349,4 +357,8 @@ const ScoreCell = styled(View)`
 `;
 const TotalCell = styled(View)`
   width: 48px;
+`;
+
+const SummaryTile = styled(View)`
+  background-color: #ffffff77;
 `;
