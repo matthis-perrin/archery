@@ -91,6 +91,7 @@ ScoreForm.displayName = 'ScoreForm';
 
 const Wrapper = styled(View)`
   display: flex;
+  background-color: #ffffff88;
 `;
 
 const Line = styled(View)`

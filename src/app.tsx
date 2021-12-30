@@ -68,5 +68,3 @@ export const App: React.FC = () => {
   );
 };
 App.displayName = 'App';
-
-console.log(replaceAt([0, 1, 2, 3, 4, 5, 6], 2, 10));
