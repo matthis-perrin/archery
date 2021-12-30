@@ -23,6 +23,7 @@ import {useNav} from './navigation';
 import {ScoreCircle} from './score_circle';
 import {SCORE_FORM_HEIGHT, ScoreForm} from './score_form';
 import {endAverage, endIsEmpty, endScore, newEnd, sessionIsEmpty} from './session';
+import {SessionArrowChart} from './session_arrow_chart';
 import {SessionSummary} from './session_summary';
 import {Spacing} from './spacing';
 import {deleteSession, setSession, useSession} from './stores';
@@ -335,9 +336,13 @@ export const SessionScreen: React.FC = React.memo(() => {
             ) : (
               <React.Fragment>
                 <Spacing height={32} />
-                <SummaryTile>
+                <Tile>
                   <SessionSummary session={session} />
-                </SummaryTile>
+                </Tile>
+                <Spacing height={32} />
+                <Tile>
+                  <SessionArrowChart session={session} />
+                </Tile>
               </React.Fragment>
             )}
             <Spacing height={32} />
@@ -401,6 +406,6 @@ const TotalCell = styled(View)`
   width: 48px;
 `;
 
-const SummaryTile = styled(View)`
+const Tile = styled(View)`
   background-color: #ffffff77;
 `;
