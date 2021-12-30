@@ -17,7 +17,7 @@ export function useNewSessionCallback(): () => void {
       id: newSessionId,
       ends: [newEnd(endSize)],
       endSize,
-      ts: Date.now(),
+      ts: Date.now(), // - Math.random() * 10 * 3600 * 1000 - 4 * 24 * 3600 * 1000,
     };
     setSession(newSessionId, newSession);
     nav.navigate('Session', {sessionId: newSessionId});

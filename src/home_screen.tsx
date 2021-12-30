@@ -1,30 +1,50 @@
 import React, {useCallback, useMemo} from 'react';
-import {FlatList, View} from 'react-native';
+import {SectionList, SectionListData, View} from 'react-native';
 import styled from 'styled-components';
 
-import {Screen} from './fragments';
+import {LightText, Screen} from './fragments';
 import {Session} from './models';
 import {NoSession} from './no_session';
-import {sortSessions} from './session';
+import {sessionDay, sortSessions} from './session';
 import {SessionTile} from './session_tile';
 import {useSessions} from './stores';
 
 export const HomeScreen: React.FC = () => {
   const sessions = useSessions();
-  const sortedSession = useMemo(() => sortSessions(sessions), [sessions]);
+  const sessionByDay = useMemo(() => {
+    const groups = new Map<number, Session[]>();
+    for (const session of sortSessions(sessions)) {
+      const day = sessionDay(session);
+      let group = groups.get(day);
+      if (group === undefined) {
+        group = [];
+        groups.set(day, group);
+      }
+      group.push(session);
+    }
+    return [...groups.entries()].map(([day, sessions]) => ({day, data: sessions}));
+  }, [sessions]);
 
   const renderItem = useCallback(({item}: {item: Session}) => <SessionTile session={item} />, []);
+  const renderSectionHeader = useCallback(
+    (info: {section: SectionListData<Session, {day: number}>}) => (
+      <LightText>{new Date(info.section.day).toLocaleDateString()}</LightText>
+    ),
+    []
+  );
   const keyExtractor = useCallback((item: Session) => item.id, []);
 
   return (
     <Wrapper>
-      <FlatList<Session>
-        data={sortedSession}
+      <SectionList<Session, {day: number}>
+        sections={sessionByDay}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
+        renderSectionHeader={renderSectionHeader}
         contentContainerStyle={{flexGrow: 1, paddingVertical: 32, paddingHorizontal: 16}}
         ListEmptyComponent={NoSession}
         ItemSeparatorComponent={SessionSeparator}
+        SectionSeparatorComponent={SessionSeparator}
       />
     </Wrapper>
   );

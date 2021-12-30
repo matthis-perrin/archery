@@ -90,3 +90,12 @@ export function worstEnd(session: Session): {end: End; index: number} {
 export function endCount(session: Session): number {
   return session.ends.filter(end => !endIsEmpty(end)).length;
 }
+
+export function sessionDay(session: Session): number {
+  const d = new Date(session.ts);
+  d.setHours(0);
+  d.setMinutes(0);
+  d.setSeconds(0);
+  d.setMilliseconds(0);
+  return d.getTime();
+}
