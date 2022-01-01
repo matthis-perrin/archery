@@ -22,8 +22,9 @@ import {NO_SCORE} from './models';
 import {useNav} from './navigation';
 import {ScoreCircle} from './score_circle';
 import {SCORE_FORM_HEIGHT, ScoreForm} from './score_form';
-import {endAverage, endIsEmpty, endScore, newEnd, sessionIsEmpty} from './session';
+import {endAverage, endIsEmpty, endScore, isEndFull, newEnd, sessionIsEmpty} from './session';
 import {SessionArrowChart} from './session_arrow_chart';
+import {SessionEndChart} from './session_end_chart';
 import {SessionSummary} from './session_summary';
 import {Spacing} from './spacing';
 import {deleteSession, setSession, useSession} from './stores';
@@ -170,10 +171,17 @@ export const SessionScreen: React.FC = React.memo(() => {
     scrollViewHeight.current = evt.nativeEvent.layout.height;
   }, []);
 
+  // Maintain a ref to the height of the sheet
+  const sheetHeightRef = useRef(0);
+  const handleSheetLayout = useCallback(evt => {
+    sheetHeightRef.current = evt.nativeEvent.layout.height;
+  }, []);
+
   //
   // Control the scroll offset when currentArrow is updated
   //
   const prev = useRef(currentArrow);
+  const lastRowHeight = useRef(0);
   useEffect(() => {
     // Compute the height the scrollview will have after the animation
     const isOpening = currentArrow !== undefined && prev.current === undefined;
@@ -192,28 +200,26 @@ export const SessionScreen: React.FC = React.memo(() => {
     if (rowToCenter !== undefined && scrollViewRef.current) {
       // Get the ref to the view that we want to center
       const rowView = endRowRefs.current.get(rowToCenter);
-      if (rowView === undefined) {
-        scrollViewRef.current.scrollToEnd();
-      } else {
-        // Measure its position relative to the scrollview
-        rowView.measureLayout(
-          scrollViewRef.current as unknown as HostComponent<unknown>,
-          (x, y, width, height) => {
-            // Ensure the row has been rendered
-            if (width === 0 || height === 0) {
-              scrollViewRef.current?.scrollToEnd();
-              return;
-            }
-            const newOffset = y - (scrollViewHeightAfterAnim - height) / 2;
-            scrollViewRef.current?.scrollTo({
-              x: 0,
-              y: newOffset,
-              animated: true,
-            });
-          },
-          () => {}
-        );
-      }
+      // Measure its position relative to the scrollview
+      rowView?.measureLayout(
+        scrollViewRef.current as unknown as HostComponent<unknown>,
+        (x, y, width, height) => {
+          // If the row has not been rendered, we scroll to center the bottom of the sheet
+          const newOffset =
+            width === 0 || height === 0
+              ? sheetHeightRef.current - scrollViewHeightAfterAnim / 2 + lastRowHeight.current
+              : y - (scrollViewHeightAfterAnim - height) / 2;
+          scrollViewRef.current?.scrollTo({
+            x: 0,
+            y: newOffset,
+            animated: true,
+          });
+          if (height > 0) {
+            lastRowHeight.current = height;
+          }
+        },
+        () => {}
+      );
     }
 
     // Update ref to keep track of previous selected arrow
@@ -255,7 +261,7 @@ export const SessionScreen: React.FC = React.memo(() => {
               </HeaderRight>
             </Header> */}
             {/* <Spacing height={32} /> */}
-            <Sheet>
+            <Sheet onLayout={handleSheetLayout}>
               <Row>
                 <DeleteCell></DeleteCell>
                 <NumberCell>
@@ -342,6 +348,16 @@ export const SessionScreen: React.FC = React.memo(() => {
                 <Spacing height={32} />
                 <Tile>
                   <SessionArrowChart session={session} />
+                </Tile>
+              </React.Fragment>
+            )}
+            {session.ends.filter(end => isEndFull(session, end)).length < 2 ? (
+              <React.Fragment />
+            ) : (
+              <React.Fragment>
+                <Spacing height={32} />
+                <Tile>
+                  <SessionEndChart session={session} />
                 </Tile>
               </React.Fragment>
             )}

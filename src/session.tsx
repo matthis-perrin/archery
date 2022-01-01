@@ -91,6 +91,10 @@ export function endCount(session: Session): number {
   return session.ends.filter(end => !endIsEmpty(end)).length;
 }
 
+export function isEndFull(session: Session, end: End): boolean {
+  return end.scores.filter(s => s !== NO_SCORE).length >= session.endSize;
+}
+
 export function sessionDay(session: Session): number {
   const d = new Date(session.ts);
   d.setHours(0);
