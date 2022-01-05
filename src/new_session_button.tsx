@@ -17,5 +17,5 @@ export const NewSessionButton: React.FC = () => {
 NewSessionButton.displayName = 'NewSessionButton';
 
 const Wrapper = styled(View)`
-  margin: 24px 0 16px 0;
+  margin: 0 0 16px 0;
 `;

@@ -30,6 +30,7 @@ import {SessionSummary} from './session_summary';
 import {Spacing} from './spacing';
 import {deleteSession, setSession, useSession} from './stores';
 import {TouchableWithData} from './touchable_with_data';
+import {useSafePaddings} from './use_safe_paddings';
 
 interface SelectedArrow {
   end: number;
@@ -41,6 +42,7 @@ export const SessionScreen: React.FC = React.memo(() => {
     params: {sessionId},
   } = useRoute<RouteProp<RouteParams, 'Session'>>();
   const nav = useNav();
+  const paddings = useSafePaddings();
 
   const session = useSession(sessionId);
   const lastEndIndex = (session?.ends.length ?? 0) - 1;
@@ -244,10 +246,14 @@ export const SessionScreen: React.FC = React.memo(() => {
 
   return (
     <Wrapper>
-      <ScrollView style={{flexGrow: 1}} ref={scrollViewRef} onLayout={handleScrollViewLayout}>
+      <ScrollView
+        style={{flexGrow: 1}}
+        contentContainerStyle={paddings}
+        ref={scrollViewRef}
+        onLayout={handleScrollViewLayout}
+      >
         <TouchableWithoutFeedback onPress={handleGlobalPress}>
-          <View style={{paddingHorizontal: 12, paddingVertical: 32, minHeight: '100%'}}>
-            <Spacing height={16} />
+          <View style={{padding: 12, minHeight: '100%'}}>
             <SessionHeader session={session} />
             <Spacing height={8} />
             <Sheet onLayout={handleSheetLayout}>

@@ -9,8 +9,11 @@ import {NoSession} from './no_session';
 import {sessionDay, sortSessions} from './session';
 import {SessionTile} from './session_tile';
 import {useSessions} from './stores';
+import {useSafePaddings} from './use_safe_paddings';
 
 export const HomeScreen: React.FC = () => {
+  const paddings = useSafePaddings();
+
   const sessions = useSessions();
   const sessionByDay = useMemo(() => {
     const groups = new Map<number, Session[]>();
@@ -44,7 +47,7 @@ export const HomeScreen: React.FC = () => {
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
-        contentContainerStyle={{flexGrow: 1, paddingVertical: 32, paddingHorizontal: 16}}
+        contentContainerStyle={{flexGrow: 1, ...paddings}}
         ListHeaderComponent={sessionByDay.length === 0 ? <Fragment /> : NewSessionButton}
         ListEmptyComponent={NoSession}
         ItemSeparatorComponent={SessionSeparator}
@@ -56,7 +59,9 @@ export const HomeScreen: React.FC = () => {
 };
 HomeScreen.displayName = 'HomeScreen';
 
-const Wrapper = styled(Screen)``;
+const Wrapper = styled(Screen)`
+  padding: 8px;
+`;
 const SessionSeparator = styled(View)`
   height: 5px;
 `;
