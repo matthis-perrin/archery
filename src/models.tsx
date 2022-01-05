@@ -4,7 +4,6 @@ export type SessionId = Brand<string, 'SessionId'>;
 
 // eslint-disable-next-line no-null/no-null
 export const NO_SCORE: NoScore = null;
-export const INITIAL_SESSION_END_SIZE: EndSize = 6;
 
 export interface ValueScore {
   value: number;
@@ -24,11 +23,30 @@ export interface End {
 
 export type EndSize = 3 | 4 | 5 | 6;
 
+export enum TargetType {
+  Fita45 = 'Fita45',
+  Fita60 = 'Fita60',
+  Fita80 = 'Fita80',
+  Fita122 = 'Fita122',
+}
 export interface Session {
   id: SessionId;
   ends: End[];
   endSize: EndSize;
+  distance: number;
+  diameter: TargetType;
   ts: number;
+}
+
+export function getInitialSessionTemplate(): Session {
+  return {
+    id: '' as SessionId,
+    ends: [],
+    endSize: 3,
+    ts: 0,
+    diameter: TargetType.Fita45,
+    distance: 18,
+  };
 }
 
 export function generateSessionId(): SessionId {

@@ -27,11 +27,7 @@ export type RouteParams = {
 };
 
 const baseOptions: NativeStackNavigationOptions = {
-  headerStyle: {
-    backgroundColor: MY_RED,
-  },
-  headerTintColor: '#000000',
-  headerTitleAlign: 'center',
+  headerShown: false,
 };
 
 export const App: React.FC = () => {
@@ -39,28 +35,11 @@ export const App: React.FC = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Group screenOptions={{animation: 'slide_from_right'}}>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              ...baseOptions,
-              title: 'Accueil',
-              headerLeft: SettingsButton,
-              headerRight: AddSessionButton,
-            }}
-          />
-          <Stack.Screen
-            name="Session"
-            component={SessionScreen}
-            options={{...baseOptions, title: 'Feuille de score'}}
-          />
+          <Stack.Screen name="Home" component={HomeScreen} options={{...baseOptions}} />
+          <Stack.Screen name="Session" component={SessionScreen} options={{...baseOptions}} />
         </Stack.Group>
         <Stack.Group screenOptions={{animation: 'slide_from_left', presentation: 'modal'}}>
-          <Stack.Screen
-            name="Settings"
-            component={SettingsScreen}
-            options={{...baseOptions, title: 'Réglages', headerLeft: () => BackButton('Close')}}
-          />
+          <Stack.Screen name="Settings" component={SettingsScreen} options={{...baseOptions}} />
         </Stack.Group>
       </Stack.Navigator>
     </NavigationContainer>

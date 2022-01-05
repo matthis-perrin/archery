@@ -2,17 +2,14 @@ import React from 'react';
 import {View} from 'react-native';
 import styled from 'styled-components';
 
-import {TextButton} from './button';
 import {LightText} from './fragments';
-import {useNewSessionCallback} from './use_new_session_callback';
+import {NewSessionButton} from './new_session_button';
 
 export const NoSession: React.FC = () => {
-  const handleNew = useNewSessionCallback();
-
   return (
     <Wrapper>
       <Title>Vous n'avez pas encore de feuilles de score enregistrées</Title>
-      <TextButton title="Nouvelle feuille de score" onPress={handleNew} />
+      <NewSessionButton />
     </Wrapper>
   );
 };

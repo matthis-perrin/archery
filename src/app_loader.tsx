@@ -30,7 +30,7 @@ export const AppLoader: React.FC = () => {
 
   return (
     <Fragment>
-      <StatusBar barStyle={'dark-content'} backgroundColor={MY_RED} />
+      <StatusBar barStyle={'light-content'} />
       {loading ? <LoadingScreen /> : <App />}
     </Fragment>
   );

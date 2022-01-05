@@ -1,9 +1,10 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {Fragment, useCallback, useMemo} from 'react';
 import {SectionList, SectionListData, View} from 'react-native';
 import styled from 'styled-components';
 
 import {LightText, Screen} from './fragments';
 import {Session} from './models';
+import {NewSessionButton} from './new_session_button';
 import {NoSession} from './no_session';
 import {sessionDay, sortSessions} from './session';
 import {SessionTile} from './session_tile';
@@ -28,7 +29,9 @@ export const HomeScreen: React.FC = () => {
   const renderItem = useCallback(({item}: {item: Session}) => <SessionTile session={item} />, []);
   const renderSectionHeader = useCallback(
     (info: {section: SectionListData<Session, {day: number}>}) => (
-      <LightText>{new Date(info.section.day).toLocaleDateString()}</LightText>
+      <SectionHeader>
+        <LightText>{new Date(info.section.day).toLocaleDateString()}</LightText>
+      </SectionHeader>
     ),
     []
   );
@@ -42,9 +45,11 @@ export const HomeScreen: React.FC = () => {
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
         contentContainerStyle={{flexGrow: 1, paddingVertical: 32, paddingHorizontal: 16}}
+        ListHeaderComponent={sessionByDay.length === 0 ? <Fragment /> : NewSessionButton}
         ListEmptyComponent={NoSession}
         ItemSeparatorComponent={SessionSeparator}
         SectionSeparatorComponent={SessionSeparator}
+        stickySectionHeadersEnabled={false}
       />
     </Wrapper>
   );
@@ -54,4 +59,10 @@ HomeScreen.displayName = 'HomeScreen';
 const Wrapper = styled(Screen)``;
 const SessionSeparator = styled(View)`
   height: 5px;
+`;
+const SectionHeader = styled(View)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
 `;

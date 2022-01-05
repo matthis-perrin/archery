@@ -25,6 +25,7 @@ import {SCORE_FORM_HEIGHT, ScoreForm} from './score_form';
 import {endAverage, endIsEmpty, endScore, isEndFull, newEnd, sessionIsEmpty} from './session';
 import {SessionArrowChart} from './session_arrow_chart';
 import {SessionEndChart} from './session_end_chart';
+import {SessionHeader} from './session_header';
 import {SessionSummary} from './session_summary';
 import {Spacing} from './spacing';
 import {deleteSession, setSession, useSession} from './stores';
@@ -76,7 +77,7 @@ export const SessionScreen: React.FC = React.memo(() => {
     if (session.ends.filter(end => !endIsEmpty(end)).length > 0) {
       Alert.alert(
         'Confirmation de suppression',
-        'Êtes vous sûr de vouloir supprimer cette session ?',
+        'Êtes vous sûr de vouloir supprimer cette feuille de score ?',
         [
           {
             text: 'Annuler',
@@ -234,10 +235,6 @@ export const SessionScreen: React.FC = React.memo(() => {
     );
   }
 
-  // const start = new Date(session.ts);
-  // const day = start.toLocaleDateString();
-  // const time = `${padNumber(start.getHours(), 2)}h${padNumber(start.getMinutes(), 2)}`;
-
   let total = 0;
   const totals: number[] = [];
   for (const end of session.ends) {
@@ -249,18 +246,10 @@ export const SessionScreen: React.FC = React.memo(() => {
     <Wrapper>
       <ScrollView style={{flexGrow: 1}} ref={scrollViewRef} onLayout={handleScrollViewLayout}>
         <TouchableWithoutFeedback onPress={handleGlobalPress}>
-          <View style={{padding: 24, minHeight: '100%'}}>
-            {/* <Header>
-              <HeaderLeft>
-                <Text>30m</Text>
-                <Text>Ø45</Text>
-                <Text>➴➴➴</Text>
-              </HeaderLeft>
-              <HeaderRight>
-                <Text>{`${day} - ${time}`}</Text>
-              </HeaderRight>
-            </Header> */}
-            {/* <Spacing height={32} /> */}
+          <View style={{paddingHorizontal: 12, paddingVertical: 32, minHeight: '100%'}}>
+            <Spacing height={16} />
+            <SessionHeader session={session} />
+            <Spacing height={8} />
             <Sheet onLayout={handleSheetLayout}>
               <Row>
                 <DeleteCell></DeleteCell>
@@ -362,7 +351,7 @@ export const SessionScreen: React.FC = React.memo(() => {
               </React.Fragment>
             )}
             <Spacing height={32} />
-            <TextButton title="Supprimer session" onPress={handleDeleteSession} />
+            <TextButton title="Supprimer la feuille de score" onPress={handleDeleteSession} />
           </View>
         </TouchableWithoutFeedback>
       </ScrollView>
@@ -380,19 +369,6 @@ const Wrapper = styled(Screen)`
 const Bottom = styled(View)`
   flex-shrink: 0;
 `;
-
-// const Header = styled(View)`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   background-color: #ffffff77;
-// `;
-
-// const HeaderLeft = styled(View)`
-//   display: flex;
-//   flex-direction: row;
-// `;
-// const HeaderRight = styled(View)``;
 
 const Sheet = styled(View)`
   display: flex;
