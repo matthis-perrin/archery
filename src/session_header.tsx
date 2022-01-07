@@ -6,9 +6,10 @@ import {DistancePicker} from './distance_picker';
 import {EndSizePicker} from './end_size_picker';
 import {padNumber} from './format';
 import {Modal} from './modal';
-import {EndSize, Session} from './models';
+import {EndSize, Session, TargetType} from './models';
 import {Spacing} from './spacing';
 import {setSession} from './stores';
+import {TargetPicker} from './target_picker';
 
 export const SCORE_FORM_HEIGHT = 300;
 
@@ -45,13 +46,20 @@ export const SessionHeader: React.FC<SessionHeaderProps> = React.memo(props => {
     [session]
   );
 
+  const handleTargetChange = useCallback(
+    (newTarget: TargetType) => {
+      setSession(session.id, {...session, target: newTarget});
+    },
+    [session]
+  );
+
   return (
     <Fragment>
       <TouchableWithoutFeedback onPress={handlePress}>
         <Header>
           <HeaderLeft>
             <Text>{`${session.distance}m`}</Text>
-            <Text>{session.diameter}</Text>
+            <Text>{session.target}</Text>
             <Text>{[...new Array(session.endSize)].map(() => `➴`).join('')}</Text>
           </HeaderLeft>
           <HeaderRight>
@@ -72,6 +80,14 @@ export const SessionHeader: React.FC<SessionHeaderProps> = React.memo(props => {
           <Spacing height={8} />
           <FormLine>
             <DistancePicker distance={session.distance} onChange={handleDistanceChange} />
+          </FormLine>
+          <Spacing height={16} />
+          <FormLine>
+            <FormLabel>Blason</FormLabel>
+          </FormLine>
+          <Spacing height={8} />
+          <FormLine>
+            <TargetPicker target={session.target} onChange={handleTargetChange} />
           </FormLine>
         </Form>
       </Modal>
@@ -99,7 +115,7 @@ const Form = styled(View)`
   padding: 16px;
   background-color: #ffffffcc;
   border-radius: 8px;
-  width: 95%;
+  width: 340px;
 `;
 
 const FormLine = styled(View)`

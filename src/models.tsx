@@ -36,7 +36,7 @@ export interface Session {
   ends: End[];
   endSize: EndSize;
   distance: number;
-  diameter: TargetType;
+  target: TargetType;
   ts: number;
 }
 
@@ -46,7 +46,7 @@ export function getInitialSessionTemplate(): Session {
     ends: [],
     endSize: 3,
     ts: 0,
-    diameter: TargetType.Fita45,
+    target: TargetType.Fita45,
     distance: 18,
   };
 }
