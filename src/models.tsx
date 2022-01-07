@@ -22,6 +22,8 @@ export interface End {
 }
 
 export type EndSize = 3 | 4 | 5 | 6;
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
+export const ALL_END_SIZE: EndSize[] = [3, 4, 5, 6];
 
 export enum TargetType {
   Fita45 = 'Fita45',

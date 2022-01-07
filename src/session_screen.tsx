@@ -330,7 +330,7 @@ export const SessionScreen: React.FC = React.memo(() => {
                 );
               })}
             </Sheet>
-            <Spacing height={32} />
+            <Spacing height={8} />
             <TextButton title="Nouvelle volée" onPress={handleAdd} />
             {sessionIsEmpty(session) ? (
               <React.Fragment />
@@ -350,7 +350,7 @@ export const SessionScreen: React.FC = React.memo(() => {
               <React.Fragment />
             ) : (
               <React.Fragment>
-                <Spacing height={32} />
+                <Spacing height={8} />
                 <Tile>
                   <SessionEndChart session={session} />
                 </Tile>
