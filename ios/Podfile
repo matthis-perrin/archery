@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '11.0'
 
-target 'archery' do
+target 'arrowpoints' do
   config = use_native_modules!
 
   use_react_native!(
@@ -12,7 +12,7 @@ target 'archery' do
     :hermes_enabled => false
   )
 
-  target 'archeryTests' do
+  target 'arrowpointsTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -28,5 +28,3 @@ target 'archery' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
-
-pod 'RNCharts', :path => '../node_modules/react-native-charts-wrapper'

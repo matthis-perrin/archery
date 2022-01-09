@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* archeryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* archeryTests.m */; };
+		00E356F31AD99517003FC87E /* arrowpointsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* arrowpointsTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DE7F90E277E4B730086F826 /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE7F90D277E4B730086F826 /* dummy.swift */; };
-		367A0715CB0DABA67F824A9B /* libPods-archery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDE4F51C2AB259F33EA802C4 /* libPods-archery.a */; };
+		3F10ABF22C519F9D2C21CDE2 /* libPods-arrowpoints.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 202DBA0FB3588EBC5EF535CE /* libPods-arrowpoints.a */; };
+		6F8596F1AC9D6B4AA20A9744 /* libPods-arrowpoints-arrowpointsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C97B7BD30CA45207325AB76 /* libPods-arrowpoints-arrowpointsTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		D4920A2EF9C8732B5738EAFB /* libPods-archery-archeryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218B006F3DC1118D19DAFFE9 /* libPods-archery-archeryTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,30 +22,28 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = archery;
+			remoteInfo = arrowpoints;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* archeryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = archeryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* arrowpointsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = arrowpointsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* archeryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = archeryTests.m; sourceTree = "<group>"; };
-		0E1FF4F7527E6989818AD5AA /* Pods-archery-archeryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-archery-archeryTests.release.xcconfig"; path = "Target Support Files/Pods-archery-archeryTests/Pods-archery-archeryTests.release.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* archery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = archery.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = archery/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = archery/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = archery/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = archery/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = archery/main.m; sourceTree = "<group>"; };
-		218B006F3DC1118D19DAFFE9 /* libPods-archery-archeryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-archery-archeryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DE7F90C277E4B730086F826 /* archery-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "archery-Bridging-Header.h"; sourceTree = "<group>"; };
-		2DE7F90D277E4B730086F826 /* dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummy.swift; sourceTree = "<group>"; };
-		3A2E7BFE60B94BBFAA3DF489 /* Pods-archery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-archery.debug.xcconfig"; path = "Target Support Files/Pods-archery/Pods-archery.debug.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = archery/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8C07101441A7EB8764B49E7E /* Pods-archery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-archery.release.xcconfig"; path = "Target Support Files/Pods-archery/Pods-archery.release.xcconfig"; sourceTree = "<group>"; };
-		CBFC6A0835AA3A468FA50DE1 /* Pods-archery-archeryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-archery-archeryTests.debug.xcconfig"; path = "Target Support Files/Pods-archery-archeryTests/Pods-archery-archeryTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DDE4F51C2AB259F33EA802C4 /* libPods-archery.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-archery.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* arrowpointsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = arrowpointsTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* arrowpoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = arrowpoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = arrowpoints/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = arrowpoints/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = arrowpoints/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = arrowpoints/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = arrowpoints/main.m; sourceTree = "<group>"; };
+		202DBA0FB3588EBC5EF535CE /* libPods-arrowpoints.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-arrowpoints.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AD73A602901E0694B0FF937 /* Pods-arrowpoints-arrowpointsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arrowpoints-arrowpointsTests.debug.xcconfig"; path = "Target Support Files/Pods-arrowpoints-arrowpointsTests/Pods-arrowpoints-arrowpointsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6C97B7BD30CA45207325AB76 /* libPods-arrowpoints-arrowpointsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-arrowpoints-arrowpointsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = arrowpoints/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B0E23D1B79D41AAB2AB7262D /* Pods-arrowpoints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arrowpoints.debug.xcconfig"; path = "Target Support Files/Pods-arrowpoints/Pods-arrowpoints.debug.xcconfig"; sourceTree = "<group>"; };
+		B532C2CA6108A23FF25AA297 /* Pods-arrowpoints-arrowpointsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arrowpoints-arrowpointsTests.release.xcconfig"; path = "Target Support Files/Pods-arrowpoints-arrowpointsTests/Pods-arrowpoints-arrowpointsTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EDCB0557A0794A7DDFA1987C /* Pods-arrowpoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-arrowpoints.release.xcconfig"; path = "Target Support Files/Pods-arrowpoints/Pods-arrowpoints.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4920A2EF9C8732B5738EAFB /* libPods-archery-archeryTests.a in Frameworks */,
+				6F8596F1AC9D6B4AA20A9744 /* libPods-arrowpoints-arrowpointsTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,20 +59,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				367A0715CB0DABA67F824A9B /* libPods-archery.a in Frameworks */,
+				3F10ABF22C519F9D2C21CDE2 /* libPods-arrowpoints.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* archeryTests */ = {
+		00E356EF1AD99517003FC87E /* arrowpointsTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* archeryTests.m */,
+				00E356F21AD99517003FC87E /* arrowpointsTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = archeryTests;
+			path = arrowpointsTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -86,7 +83,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* archery */ = {
+		13B07FAE1A68108700A75B9A /* arrowpoints */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -95,18 +92,16 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				2DE7F90D277E4B730086F826 /* dummy.swift */,
-				2DE7F90C277E4B730086F826 /* archery-Bridging-Header.h */,
 			);
-			name = archery;
+			name = arrowpoints;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				DDE4F51C2AB259F33EA802C4 /* libPods-archery.a */,
-				218B006F3DC1118D19DAFFE9 /* libPods-archery-archeryTests.a */,
+				202DBA0FB3588EBC5EF535CE /* libPods-arrowpoints.a */,
+				6C97B7BD30CA45207325AB76 /* libPods-arrowpoints-arrowpointsTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -121,12 +116,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* archery */,
+				13B07FAE1A68108700A75B9A /* arrowpoints */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* archeryTests */,
+				00E356EF1AD99517003FC87E /* arrowpointsTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				A14938401C7C523F7D4DD2BE /* Pods */,
+				F5B04829F50E11715953B865 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -136,67 +131,68 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* archery.app */,
-				00E356EE1AD99517003FC87E /* archeryTests.xctest */,
+				13B07F961A680F5B00A75B9A /* arrowpoints.app */,
+				00E356EE1AD99517003FC87E /* arrowpointsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A14938401C7C523F7D4DD2BE /* Pods */ = {
+		F5B04829F50E11715953B865 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3A2E7BFE60B94BBFAA3DF489 /* Pods-archery.debug.xcconfig */,
-				8C07101441A7EB8764B49E7E /* Pods-archery.release.xcconfig */,
-				CBFC6A0835AA3A468FA50DE1 /* Pods-archery-archeryTests.debug.xcconfig */,
-				0E1FF4F7527E6989818AD5AA /* Pods-archery-archeryTests.release.xcconfig */,
+				B0E23D1B79D41AAB2AB7262D /* Pods-arrowpoints.debug.xcconfig */,
+				EDCB0557A0794A7DDFA1987C /* Pods-arrowpoints.release.xcconfig */,
+				5AD73A602901E0694B0FF937 /* Pods-arrowpoints-arrowpointsTests.debug.xcconfig */,
+				B532C2CA6108A23FF25AA297 /* Pods-arrowpoints-arrowpointsTests.release.xcconfig */,
 			);
+			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* archeryTests */ = {
+		00E356ED1AD99517003FC87E /* arrowpointsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "archeryTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "arrowpointsTests" */;
 			buildPhases = (
-				C361582B7258668DFC3A2809 /* [CP] Check Pods Manifest.lock */,
+				993670FD6592F5FC50DC9778 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				CF2C770B88E2BB86D756CAB2 /* [CP] Embed Pods Frameworks */,
-				99E7D9F3ED05C9B04B7459E0 /* [CP] Copy Pods Resources */,
+				9649BF33BF8AFB3F3D5A1F07 /* [CP] Embed Pods Frameworks */,
+				3D4C350DAD3F0047BF6B643A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = archeryTests;
-			productName = archeryTests;
-			productReference = 00E356EE1AD99517003FC87E /* archeryTests.xctest */;
+			name = arrowpointsTests;
+			productName = arrowpointsTests;
+			productReference = 00E356EE1AD99517003FC87E /* arrowpointsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* archery */ = {
+		13B07F861A680F5B00A75B9A /* arrowpoints */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "archery" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "arrowpoints" */;
 			buildPhases = (
-				74ACE8EA693B15B7779C62D4 /* [CP] Check Pods Manifest.lock */,
+				3A7008ABDEF38659F0DB1651 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				119CDE1BBCE43CB74C7CBD0D /* [CP] Embed Pods Frameworks */,
-				7FE138D7D33F33C4535AA42F /* [CP] Copy Pods Resources */,
+				C0F282029A401161DE9B7F9B /* [CP] Embed Pods Frameworks */,
+				C6A3E1B35930D16A3254DB25 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = archery;
-			productName = archery;
-			productReference = 13B07F961A680F5B00A75B9A /* archery.app */;
+			name = arrowpoints;
+			productName = arrowpoints;
+			productReference = 13B07F961A680F5B00A75B9A /* arrowpoints.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -212,11 +208,11 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1310;
+						LastSwiftMigration = 1120;
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "archery" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "arrowpoints" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -229,8 +225,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* archery */,
-				00E356ED1AD99517003FC87E /* archeryTests */,
+				13B07F861A680F5B00A75B9A /* arrowpoints */,
+				00E356ED1AD99517003FC87E /* arrowpointsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -269,24 +265,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		119CDE1BBCE43CB74C7CBD0D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-archery/Pods-archery-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-archery/Pods-archery-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-archery/Pods-archery-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		74ACE8EA693B15B7779C62D4 /* [CP] Check Pods Manifest.lock */ = {
+		3A7008ABDEF38659F0DB1651 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -301,48 +280,48 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-archery-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-arrowpoints-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7FE138D7D33F33C4535AA42F /* [CP] Copy Pods Resources */ = {
+		3D4C350DAD3F0047BF6B643A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-archery/Pods-archery-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-arrowpoints-arrowpointsTests/Pods-arrowpoints-arrowpointsTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-archery/Pods-archery-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-arrowpoints-arrowpointsTests/Pods-arrowpoints-arrowpointsTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-archery/Pods-archery-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-arrowpoints-arrowpointsTests/Pods-arrowpoints-arrowpointsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		99E7D9F3ED05C9B04B7459E0 /* [CP] Copy Pods Resources */ = {
+		9649BF33BF8AFB3F3D5A1F07 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-archery-archeryTests/Pods-archery-archeryTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-arrowpoints-arrowpointsTests/Pods-arrowpoints-arrowpointsTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-archery-archeryTests/Pods-archery-archeryTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-arrowpoints-arrowpointsTests/Pods-arrowpoints-arrowpointsTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-archery-archeryTests/Pods-archery-archeryTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-arrowpoints-arrowpointsTests/Pods-arrowpoints-arrowpointsTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C361582B7258668DFC3A2809 /* [CP] Check Pods Manifest.lock */ = {
+		993670FD6592F5FC50DC9778 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -357,28 +336,45 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-archery-archeryTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-arrowpoints-arrowpointsTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CF2C770B88E2BB86D756CAB2 /* [CP] Embed Pods Frameworks */ = {
+		C0F282029A401161DE9B7F9B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-archery-archeryTests/Pods-archery-archeryTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-arrowpoints/Pods-arrowpoints-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-archery-archeryTests/Pods-archery-archeryTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-arrowpoints/Pods-arrowpoints-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-archery-archeryTests/Pods-archery-archeryTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-arrowpoints/Pods-arrowpoints-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6A3E1B35930D16A3254DB25 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-arrowpoints/Pods-arrowpoints-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-arrowpoints/Pods-arrowpoints-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-arrowpoints/Pods-arrowpoints-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -407,7 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* archeryTests.m in Sources */,
+				00E356F31AD99517003FC87E /* arrowpointsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +412,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				2DE7F90E277E4B730086F826 /* dummy.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,7 +421,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* archery */;
+			target = 13B07F861A680F5B00A75B9A /* arrowpoints */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -434,15 +429,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBFC6A0835AA3A468FA50DE1 /* Pods-archery-archeryTests.debug.xcconfig */;
+			baseConfigurationReference = 5AD73A602901E0694B0FF937 /* Pods-arrowpoints-arrowpointsTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = archeryTests/Info.plist;
+				INFOPLIST_FILE = arrowpointsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -456,18 +450,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/archery.app/archery";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/arrowpoints.app/arrowpoints";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0E1FF4F7527E6989818AD5AA /* Pods-archery-archeryTests.release.xcconfig */;
+			baseConfigurationReference = B532C2CA6108A23FF25AA297 /* Pods-arrowpoints-arrowpointsTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = archeryTests/Info.plist;
+				INFOPLIST_FILE = arrowpointsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -481,22 +474,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/archery.app/archery";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/arrowpoints.app/arrowpoints";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A2E7BFE60B94BBFAA3DF489 /* Pods-archery.debug.xcconfig */;
+			baseConfigurationReference = B0E23D1B79D41AAB2AB7262D /* Pods-arrowpoints.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = archery/Info.plist;
+				INFOPLIST_FILE = arrowpoints/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -506,10 +496,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.matthis.archery;
-				PRODUCT_NAME = archery;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "archery-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = arrowpoints;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -518,15 +506,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C07101441A7EB8764B49E7E /* Pods-archery.release.xcconfig */;
+			baseConfigurationReference = EDCB0557A0794A7DDFA1987C /* Pods-arrowpoints.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution";
-				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = archery/Info.plist;
+				INFOPLIST_FILE = arrowpoints/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -536,10 +521,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.matthis.archery;
-				PRODUCT_NAME = archery;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "archery-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = arrowpoints;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -673,7 +656,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "archeryTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "arrowpointsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -682,7 +665,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "archery" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "arrowpoints" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -691,7 +674,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "archery" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "arrowpoints" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

@@ -1,5 +1,5 @@
 {
-  "name": "archery",
+  "name": "arrowpoints",
   "license": "UNLICENSED",
   "scripts": {
     "android": "react-native run-android",
