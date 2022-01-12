@@ -3,6 +3,7 @@ import {Text, TouchableWithoutFeedback, View} from 'react-native';
 import styled from 'styled-components';
 
 import {MY_YELLOW} from './colors';
+import {error} from './logger';
 
 interface TextButtonProps {
   title: string;
@@ -27,7 +28,7 @@ export const TextButton: FC<TextButtonProps> = props => {
   const handlePress = useCallback(() => {
     setLoading(true);
     Promise.resolve(onPress())
-      .catch(console.error)
+      .catch(error)
       .finally(() => {
         if (isMounted.current) {
           setLoading(false);

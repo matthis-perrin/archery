@@ -3,10 +3,11 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {HomeScreen} from './home_screen';
+import {error, log} from './logger';
 import {SessionId} from './models';
 import {SessionScreen} from './session_screen';
 import {SettingsScreen} from './settings_screen';
@@ -28,6 +29,10 @@ const baseOptions: NativeStackNavigationOptions = {
 };
 
 export const App: React.FC = () => {
+  useEffect(() => {
+    log('App loaded');
+    error(new Error('Test error'));
+  });
   return (
     <SafeAreaProvider>
       <NavigationContainer>

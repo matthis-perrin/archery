@@ -1,7 +1,8 @@
+import {error} from './logger';
 import {createMapStore} from './map_data_store';
 import {Session, SessionId} from './models';
 
-const sessionsStore = createMapStore<SessionId, Session>('session', console.error);
+const sessionsStore = createMapStore<SessionId, Session>('session', error);
 export const getSession = sessionsStore.getData;
 export const setSession = sessionsStore.setData;
 export const useSession = sessionsStore.useData;

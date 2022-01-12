@@ -4,6 +4,7 @@ import {StatusBar} from 'react-native';
 
 import {App} from './app';
 import {LoadingScreen} from './loading_screen';
+import {error} from './logger';
 import {awaitStoresLoaded} from './stores';
 
 const CLEAR_STORAGE_ON_STARTUP = false;
@@ -19,7 +20,7 @@ export const AppLoader: React.FC = () => {
       .then(() => {
         setLoading(false);
       })
-      .catch(console.error);
+      .catch(error);
   }, []);
 
   return (
